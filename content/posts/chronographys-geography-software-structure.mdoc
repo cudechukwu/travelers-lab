@@ -1,0 +1,123 @@
+---
+title: "Chronography’s Geography: Software & Database Structure"
+date: 2017-06-20
+authors:
+  - Jesse W. Torgerson
+project: theophanes
+excerpt: "By Jesse W. Torgerson and Ethan Yaro Note: This is the third in a series devoted to the project “Narrative"
+legacyPath: /2017/06/20/chronographys-geography-software-structure/
+---
+
+By [Jesse W. Torgerson](http://jtorgerson.faculty.wesleyan.edu/) and Ethan Yaro
+
+_Note: This is the third in a series devoted to the project “[Narrative and Geography in the Chronicle of Theophanes the Confessor](https://travelerslab.research.wesleyan.edu/geography-and-narrative-in-the-chronicle-of-theophanes/)“. Our first post considered [what the question of place in narrative means for historical research](/blog/can-we-map-both-space-and-place-in-historical-narratives), and our second the question of  [mapping ‘space’ v ‘place’](/blog/can-we-map-both-space-and-place-in-historical-narratives). A subsequent post will explain [what we consider ‘geography’ in the Chronography](/blog/chronographys-geography-software-structure).  
+_
+
+When we began this project, we had a vague inkling that it might prove productive to analyze the geographical content of the _Chronography_ of George Synkellos and Theophanes the Confessor.
+
+Despite having read the _Chronography_ many times, when we began to actually hunt, line by line, for “geography,” we quickly realized that we had actually  _under_\-estimated the extent to which the _Chronography_ hung on such references. We also realized how difficult it was to determine what, exactly, counted as a geographic reference.
+
+In [a previous post we hinted at what we have already discovered](/blog/can-we-map-both-space-and-place-in-historical-narratives), stating “in an exploratory attempt to determine the percentage of the text’s words that were explicitly devoted to ‘geography,’ we came up with the shockingly high figure of 20%.”  
+We then promised to explain what we meant by this and how we arrived at this number.
+
+The next three posts on our [_Narrative and Geography_ project](https://travelerslab.research.wesleyan.edu/geography-and-narrative-in-the-chronicle-of-theophanes/) constitute that explanation. We will attempt to explicate our methodology for capturing the way geography works – or, to be more exact, the way geographic references work – over the course of the narrative of the _Chronography_ of Synkellos and Theophanes.
+
+### Choosing an Analytic Software
+
+Based on the advice of lab “network” member [Jason Simms (Lafayette College)](https://its.lafayette.edu/people/jason-simms/), we opted to use [MaxQDA](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjBr42Gh83UAhWFVj4KHcFoBm0QFggmMAA&url=http%3A%2F%2Fwww.maxqda.com%2F&usg=AFQjCNGL2D_A3Gtos0D9rPsWIKeo3KXBpw) to “capture” the geography in the _Chronography_, and then to perform initial analysis on this data.
+
+Using MaxQDA, we set out to:
+
+-   tag (in MaxQDA’s terminology, to “code”) all geographic references
+-   categorize each reference
+-   track where references occurred in a way conducive to comparative analyses
+
+MaxQDA’s selling point for this project was the degree of flexibility it allows us in manually coding each section of the text, from extended sections down to specific one-word references, in exactly the way we wanted. This has proven analytically productive especially for the second goal (above).
+
+### The Goal: Tracking Geographic References
+
+As argued in [the previous post](/blog/how-to-show-a-chronographys-geography), we started with the premise that a chronography establishes its own geography for a reader. That is, while a _Chronography_ may look to us, today, like some form of a chronlogical encyclopedia (“I wonder what happened in …”), we believe the text rewards readers who (at the very least) read significant sections straight through and – even more – actually read the work from cover to cover as though it contained a narrative and argument that could be, or need be, followed.
+
+With this premise, our goal in tracking geographic references is to better follow, or re-create, a ninth-century reader’s experience with the _Chronography_. If a ninth-century Constantinopolitan sat down and read through the _Chronography_, what regions of the empire would be consistently dwelt upon? What regions would be gradually abandoned? What regions would come into focus? Which regions would be associated with which historical characters or emperors? Which regions would be associated with which conflicts – whether military or philosophical or political? Where, in short, would a reader see, in their mind’s eye, the different parts of the story play out?
+
+We thus designed our methods with the over-arching goal: to make the mass of place-specific references coherent to twenty-first century readers in something closer to the way they would have been for a ninth-century reader, to better approximate the mental image that the _Chronography_ might have formed in an attentive reader’s mind.
+
+What our methodology cannot do – of course – is to recreate the associations a reader would already have had with any specific place. Our methodology seeks to simply plot the associations that the _Chronography_ makes _internally_, for itself, as though in isolation, all to find out:
+
+_What is the geographic world that the Chronography actively created for its readers?_
+
+### Questions and Procedures
+
+In order to determine what proportion of the text was concerned with geography, our initial task was to determine what constituted a geographical reference. This project began in the Summer of 2016, and so our thinking has evolved somewhat as we carried out the research.
+
+In describing our current methodology, we can now distinguish two central issues:
+
+First, how – into what sort of sections – do we divide up the text content?
+
+Second, how do we decide what items we “tag” as geographic references?
+
+Third, how do we go about categorizing these “tagged” references?
+
+We will deal with the first in this post, the second and third in the posts that follow.
+
+### How to break down the text and group the geographic references?
+
+Before actually tagging any specific geographic references, we had to decide how we would group (or, from another perspective, separate) them, once we had them.
+
+What constitutes a “textual unit” or “section” of the text that we can use for comparative analysis (i.e., that would allow us to viably compare a section X of the text with a section Y)?
+
+Deciding how to divide the text, how to group the geographic references, is a decision with consequences for the entire project, ultimately determining the research questions our database can answer.
+
+Realizing that the analytical questions we will be able to ask were at stake, we focused on what we conceived to be our ultimate goal.
+
+Since our goal can be described (above) as seeking to better understand how the text is working with the mind of its reader (reading with, rather than against, the grain of the text), we wanted our groupings to reflect the most explicit divisions of the text itself.
+
+-   **Group by Yearly Entry**
+
+The most obvious way to divide the _Chronography_, and thus the geographic references we find, is by the _Chronography_‘s own yearly entries.
+
+What does this mean for our data-gathering process?
+
+To use a one-sentence example from the chronicle:
+
+> **AM 5796**  
+> Diocletian lived privately in his own city at Salon in Dalmatia  
+> while Maximianus Herculius lived in Lykaonia.
+
+In this citation, any geographic references (e.g., to Salon, and Lykaonia) would be linked by falling under AM 5796.\*
+
+\*_As a brief aside for those who have not read the work, the_ Chronography _organized entries primarily by “Years of the World” (Greek:_ _κ__όσμου ἔτη__), conventionally expressed in scholarship by the abbreviation “AM” from the Latin “Anni Mundi.”_
+
+This seemed to us a fairly straightforward and uncontroversial decision.
+
+As an added benefit, there are some significant differences in what content falls under which years between the earliest Greek manuscripts (_Paris Grec 1710_ vs. _Oxford Christ Church College Wake Greek 5_ vs. _Vaticanus Latinus 155_). Dividing geographic references by year will allow us, in the future, to tweak the database to reflect the content of each of these individual manuscripts and so compare whether the change in reckoning between these manuscripts changes the function of the geographic references in each.
+
+-   **Group by Reigning Emperor**
+
+The science of late antique and medieval chronography was primarily built around coordinating reigns of emperors, kings, and bishops.
+
+It was only once these lists of reigns had been coordinated that a “Year of the World,” or a “Universal Year” could be asserted.
+
+Thus, the most obvious way to establish a comparative division of the _Chronography_ was to also divide the text by reigning emperor.
+
+In practice, this meant that not only did we divide the text into the sections that corresponded to each Roman emperor’s reign, we also tagged each mention of each emperor in the text itself, in the same way that we “tagged” places. This allows us to establish a “geography” for each emperors on two levels.
+
+First, there is the general geography for each emperors’ reign, in which all geographic references under, for instance, Diocletian, are simply a single group.
+
+Second, by tagging each emperor as a historical character, Max QDA’s analytical functions allow us to track the specific geography with which these “main characters” of the narrative are most closely associated.
+
+This second method allows us to also apply our “geographic references” data as supplements to more narrative analyses that might want to, for instance, ask whether there are certain geographic trends that correspond to a praise-, or blame-worthy emperor.
+
+Thus, by tagging emperors in these two manners, we are able to track how geographic references change, compare, or contrast between emperor’s reigns, between emperors as characters in the narrative, as well as between all specific yearly entries.
+
+### To Conclude:
+
+If we consider the example sentence, above, the entire sentence (and the rest of the entry) would first be tagged as “AM 5796.” This means any specific geographic reference is also coded for this year: if we pulled all references to Salon (for example), we would also know that one reference occurred here, in AM 5796.
+
+In addition, this entry and all other entries for the reign of Diocletian (AM 5777-5796 inclusive), would be tagged as “Diocletian.” This means we are also tracking all geographic references made under Diocletian’s reign as a coherent group, attributing them all to that emperor’s reign. This allows MaxQDA to immediately give us a picture of the “geography” used to tell the story of Dioclectian’s reign.
+
+Finally, the appearance of Diocletian’s name in the text proper would mean we tag this single word in AM 5796, “Diocletian,” as a direct reference to the reigning emperor. When we pull references with a close association of grammatical proximity to “Diocletian,” we would find Salon, Lykaonia, and Dalmatia among the results.
+
+We believe these analytical divisions not only correspond to the explicit way in which the _Chronography_ is organized, but also correspond to the substantial content, much of which has to do with assigning praise or blame to specific emperors. This latter connection will allow our tagging of geographic references to not only tell us something about how geography – in and of itself – works in the _Chronography_, but will allow us to incorporate these findings in arguments about how to interpret, or read, the text and its polemic.
+
+Having established our means of dividing up the text of the _Chronography_, in our next post on methodology we will turn to how we determined which words and phrases to count as geographic references.

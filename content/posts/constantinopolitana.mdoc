@@ -1,0 +1,73 @@
+---
+title: "Constantinopolitana: A Database of East Rome"
+date: 2024-05-11
+authors:
+  - Ruishi Wang
+  - Will Markowitz
+  - Alex Williams
+  - Olivia Keyes
+  - Charlotte Seal
+  - Zaray Dewan
+  - Arushi Khare
+project: cder
+excerpt: "Constantinopolitana: A Database of East Rome is a relational database of everything known about Constantinople. The objects, people, buildings, and events are spatially and temporally linked together to create what is…"
+legacyPath: /2024/05/11/constantinopolitana/
+---
+
+Constantinopolitana: A Database of East Rome is a relational database of everything known about Constantinople. The objects, people, buildings, and events are spatially and temporally linked together to create what is essentially a digital map of Constantinople using the research environment nodgoat. To conceptualize potential ways to link the data, the categories places, people, literature, manuscripts, statues, and seals were created. The places category was based on a previous iteration of this project, Constantinople as Palimpsest (CPal), which was [originally created using ArcGIS](https://wesleyan.maps.arcgis.com/apps/MapSeries/index.html?appid=15245e242e0846c8a00da0238996470d) before being transferred to nodegoat \[see below\].
+
+![](/media/posts/constantinopolitana/blogmap-e1773856026355.png)
+
+**_Places_**
+
+The places group is concerned with the geography, structures and cisterns of Constantinople. We were tasked with creating a geographic visualization of the Great Palace of Constantinople, the Hagia Sophia and other notable landmarks from medieval Constantinople overlaid atop modern Istanbul. We utilized various sources in order to best approximate sizes and locations, and were able to piece together a map on which the other aspects of the project can be positioned. Then, through the GeoJSON format were able to map the coordinates which could then be uploaded to the database. By the end of the semester, we were able to initiate the first linkage between the other aspects of the project by connecting to the statues database, thereby allowing for a spatial visualization of the statue’s locations. The greatest challenge in the project arose from the limited degree of information regarding the exact position of structures non existent in the modern day.
+
+![](/media/posts/constantinopolitana/blogpost1.png)
+
+We used “Buildings.Spaces” as the main object in nodegoat, which captures the information through name, notes, references, and within buildings. By linking it to the sub-object in Statues.Statues, we were able to make the relationship between statues and buildings.
+
+![](/media/posts/constantinopolitana/blogpost2.png)
+
+Over the course of this semester, we plan an expansion and refinement of the existent visualization, and eventually the beginnings of the culmination of our mission through connections to the databases which constitute the project. This expansion of the project will be done in partnership and under the oversight of professor Alice McMicheal from Michigan State University.
+
+**_by Ruishi Wang and Will Markowitz_**
+
+**_People_**
+
+The “People” object in the database is made up from references to other prosopographical databases covering Constantinople, because we are not doing our own prosopographical research for this prototype, as the goal is to combine existing data. To start, we used data from the [PMBZ(Prosopography of the Middle Byzantine Period Online](https://www.degruyter.com/database/pmbz/html)). We began with a list of people received from Ivan Maric, a Byzantine Postdoctoral Research Fellow from the Seeger Center for Hellenic Studies. Those people will be used to build the events that Maric studies into the database. However, to build connections between the different categories, we also needed to find and connect people that other objects referenced. For example, Manuscripts object might have a copyist, and the literature object might have an author. To figure out how we were going to relate different objects in the database, we needed people from each category. Unfortunately the PMBZ only covers the years 641-1025 AD, so we also used four other databases: the [PBW(Prosopography of the Byzantine World](https://pbw2016.kdl.kcl.ac.uk)), [Pinakes](https://pinakes.irht.cnrs.fr/), [VIAF (The Virtual International Authority File)](https://viaf.org/), and the [DO(Dumbarton Oaks) Byzantine Seals Collection](https://www.doaks.org/resources/seals#). Cross referencing different scholarly mentions of these people and entering into the database (there are 90 entries as of January 2024) stretched into winter break. The next step for the People category is to add a system of occupation, and at that point it will be pretty much finished for the purposes of the prototype stage.
+
+![](/media/posts/constantinopolitana/blogpeople.png)
+
+**_by Alex Williams_**
+
+**_Literature_**
+
+For literature, the first step was to identify an initial group of documents that would be the “test run.” This initial group was based on the manuscript project’s “Dated Lake Manuscripts” spreadsheet. I took the Pinakes URL for each manuscript and created a new spreadsheet that would become the initial repository for the data from Pinakes. In [Pinakes](https://pinakes.irht.cnrs.fr/) (an online database of pre-16th century Greek texts), the “content” section at the bottom of each manuscript’s page was copied into the aforementioned spreadsheet. The Pinakes website is entirely in French, so the automatic Google translate feature on Google Chrome was utilized. Once all data from Pinakes was found, the works were searched for in the [Thesaurus Linguae Graecae](https://stephanus.tlg.uci.edu/index.php) “TLG” (a digital collection of all surviving Greek literature from antiquity to the present). This led to challenges as the names of both the works and the authors were largely not standardized, as well as some of the titles of the works in Pinakes were not specific enough to determine the match in the TLG. This spreadsheet was then sent to the outside researcher working on this project, Rue Taylor, for assistance in figuring out the inconsistencies. While waiting for Rue, I uploaded the spreadsheet to nodegoat, creating a single data model, “Lit.Literature” that included the title in the original language (either Greek or Latin), the title in English, the author’s name according to Pinakes/TLG, the standardized author’s name (usually found through searching the Pinakes/TLG name on Google), the TLG reference number, and the URLs from both Pinakes and TLG. Not all of these were filled out for each work, however. I think the biggest challenge was the beginning of the project, when I was still working out what made literature and manuscripts different projects. I eventually decided to just get the information and determine the best way to present it on nodegoat and to not focus as much on the abstract concepts, which made the project a lot easier to work with.
+
+![](/media/posts/constantinopolitana/literature.png)
+
+_**by Olivia Keyes**_
+
+**_Manuscripts_**
+
+For manuscripts we were creating a dataset to organize three data types regarding manuscripts. The first is the descriptive information regarding the manuscript itself, specifically the date, call number, and primary contents, in short the existence of the manuscript itself. These manuscripts are identified in their sources by a lake number, collected in the [pinakes](https://pinakes.irht.cnrs.fr) database which can be found through a pinakes URI. The second data type is the location, often the institution, that these manuscripts belong to. As well as the date of creation of these locations, usually religious buildings, which helps us identify a period that a manuscript belongs to, the latitude and longitude are also included. Finally, the manuscript copyist makes up a set of information, identified by their Scribe Name, as in the name attached to the manuscript which they have copied. These three elements to the manuscripts describe the intellectual links between people, institutions, period and geography. The next step to be taken in this area is to integrate “copyists” as a dataset, with “people” as well as “manuscript places” with “buildings” in general, in order to give a more holistic view of the connection between that manuscripts make between people, period and place.
+
+![](/media/posts/constantinopolitana/manuscripts.png)
+
+_**by Charlotte Seal**_
+
+_**Statues**_
+
+CDER has been looking to create a repository of important statues from Constantinople. In NodeGoat, we have created data models that express relationships between statues and their specific locations within the city. We have been using Sarah Bassett’s _The Urban Image of Late Antique Constantinople_ for entering descriptions about the statues. These include commentary from primary sources and from Bassett herself, who often refers to other scholars in her analysis. Our data model takes note of this difference between primary and scholarly sources in Bassett’s text. The statues are located in various Constantinople landmarks – such as the Hippodrome or Chalke Gate. This has allowed us to seamlessly relate our work to another project that specifically deals with historic spaces in Constantinople. 
+
+![](/media/posts/constantinopolitana/statues.png)
+
+_**by Zaray Dewan**_
+
+_**Seals**_
+
+We organized the CDER dataset to include most of the elements in the already existing [Byzantine seals database at Dumbarton Oaks](https://www.doaks.org/resources/seals/byzantine-seals#b_start=0), organized by Professor Jonathon Shea, who has also been advising this portion of the project. We started our object dataset by including most of the DO database’s information, but as the seals’ connection to the “People” and “Places” objects became evident we focused on the descriptions that linked the seals to those categories. Most seals carry inscriptions and images featuring people holding offices of various kinds, as they were often used in a manner of authentication (of documents, identity, etc.). We began inputting the seals by filtering those which came from offices located within the Great Palace (as suggested by Prof. Shea) and then cross referencing the people depicted to the [PMBZ (Prosopography of the Middle Byzantine Period Online) database](https://www.degruyter.com/database/pmbz/html?lang=en), as the Dumbarton Oaks database has started to do this with some seals but not the majority. To continue organizing the dataset, the eventual category of “Offices” will be useful in pinpointing more exact locations of offices within the Great Palace and beyond, and we will be expanding to a catalog of coins as well.
+
+![](/media/posts/constantinopolitana/seals.png)
+
+_**by Arushi Khare**_

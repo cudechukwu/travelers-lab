@@ -1,0 +1,29 @@
+---
+title: "The Event-Based Narrative in the Annals of Fulda: Methodology"
+date: 2023-08-18
+authors:
+  - Vasilia Yordanova
+project: comparing-chronicles
+excerpt: Introduction In line with other Traveler’s Lab projects, this undertaking was the beginning of a long exploration of using quantitative
+legacyPath: /2023/08/18/the-event-based-narrative-in-the-annals-of-fulda-methodology/
+---
+
+**Introduction**
+
+In line with other Traveler’s Lab projects, this undertaking was the beginning of a long exploration of using quantitative methods in the study of medieval chronicles by following the logic of the text through its narration, rather than that of chronology.  This project, drawing from the 9th-century Carolingian chronicle, the _Annals of Fulda_, served as an experimental model that will inspire similar practices in the way we study chronicles. Describing the work of a whole summer, this article will focus on the methods used to study the _Annals of Fulda_, including the constructed models we hope will have a wider impact.
+
+**Methodology**
+
+The whole text of the chronicle the _Annals of Fulda_ was parsed, scanned and uploaded to _Nodegoat_, a web-platform that allows for data modeling and contextualization through spatial and temporal elements. _Nodegoat_ allowed us to create our own objects to map our data (from the text) such as _Person_ (the historical people part of the event) and _Places_ (the geographical area where the event was happening). The text was systematically mapped with tags of _Person, Places_ and _Event_ objects. A new object added to _Fulda_ was the _Religious_ tag, which is used to map religious celebrations such as Easter or Christmas, that occur throughout the text. Starting to map _Fulda_ not having used the platform before was made easier through following the sample of _Fulda_’s sister project _The Royal Frankish Annals_, modeled by Daniel Feldman. Therefore, many of the objects were already set up, and only needed to be furnished with the new data. In order to have both projects sharing the same object database we created the _Chronicle_ object to differentiate between them as well as different manuscripts of _Fulda_. 
+
+The team had already started thinking about new ways to express events, in a way to make them help us better understand the narrative. The way the project defines the event is different than we might think of them regularly. For instance, an event is not only a battle or a coronation, or an ‘important’ happening; anything can be an event. In fact, everything is. Every couple of sentences focusing on a specific narrative (following certain guidelines for time and place), was mapped as an event. 
+
+Determining what constitutes an event and creating the event dataset was a challenging experience and a process we are refining to date. With the intention of fully capturing the text of the chronicle, we started developing a model where every sentence would be an event, but soon realized that this would not fully capture the scope of the narrative. We then opted for a definition of the event that was more narrative-focused where the events would terminate depending on the change of temporal identifiers as well as agents in the narrative. To avoid bypassing the text (as the short titles do not allow for detail) we decided to add a ‘Passage’ descriptor, where the text of the particular event is disclosed. 
+
+The event object was the most important yet most difficult to develop. We went through a long trial and error process figuring out what descriptors to attach to the object, in a way that was useful but not redundant. The event object is now linked to the chronicle entry (the text of the chronicle by year), person, places objects and has a sub-object denoting time. 
+
+The _places_ object is connected to _Pleiades_, a database of ancient locations (along with their longitude, latitude, Pleiades id) which we imported to _Nodegoat_. The location identifiers in _places_ allow us to visualize the ancient locations where the mapped events happened. 
+
+Dating the events was another issue, since only some of them have a time identifier. We decided that instead of following a chronological logic, by using estimates and dates the text provided to date events, we would follow a narrative logic, by not ‘dating’ the events per se. Instead they would be connecting to each other sequentially, as dictated by the narrative determined by the chronicler; sometimes narrative and historical time are not interchangeable. To preserve the information the text provides we added a descriptor for ‘exact dates’, to be used in case the text provided one such descriptor. 
+
+Having now created a database of objects, _Nodegoat_ allows us to use the _Reconciliation_ feature to map objects such as _Places_ and _Person_ to the remaining chronicle entries. Although not a flawless process, _Reconciliation_ allows for semi-speedy execution of an otherwise laborious task. We are still working on ways to automate the process of text-tagging and potentially extend it to other objects, such as events.

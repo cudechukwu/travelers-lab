@@ -1,0 +1,91 @@
+---
+title: "Chronography’s Geography: To Organize Geographic References"
+date: 2017-09-26
+authors:
+  - Ethan Yaro
+project: theophanes
+excerpt: "By Ethan Yaro Note: This is the fifth in a series devoted to the project “Narrative and Geography in the"
+legacyPath: /2017/09/26/chronographys-geography-to-organize-geographic-references/
+---
+
+_Note: This is the fifth in a series devoted to the project “Narrative and Geography in the Chronicle of Theophanes the Confessor”. First post [here](/blog/can-we-map-both-space-and-place-in-historical-narratives); second [here](/blog/how-to-show-a-chronographys-geography); third [here](/blog/chronographys-geography-software-structure); fourth [here](/blog/chronographys-geography-what-counts-as-geographic-reference)._
+
+The chronicle is geographically dense. After completely coding only half of the text, we have reached over ten thousand data points.
+
+This immense amount of data, unsorted, represents an impenetrable mass, with little meaning for either the casual observer or someone already well versed in the text. For this reason we developed categories into which we could sort this multitude of geographic references.
+
+### Learning how to Categorize Our Data
+My creation of the Geography in Theophanes database began with an excel sheet. Initially, when developing the excel-sheet index, I created a few general categories in which to sort all of the geographic references or tags. There were only 11, and I initially imagined that this would do a pretty good job organizing the data.
+
+As I moved the project into MAXQDA the number of data points that had been coded in the text steadily climbed into the hundreds and then thousands. It became clear that there had to be a more in-depth organizing principle for all the different types of codes.
+
+Oddly enough, the first step in separating out the different types of data was creating fewer distinct archetypes (or super categories): rather than the initial eleven categories, I boiled the data down to four main types of geographic data within the text. These were:
+
+1: Explicit Geography – References to geographical places, such as Jerusalem, Africa, or Hagia Sofia.  
+2: Geographical Titles – References to geography that are not a place, but someone associated with a place, such as The Persian Emperor (associated with Persia), The Bishop of Constantinople (associated with Constantinople), or The Dux of Palestine (associated with Palestine).  
+3: Geographically Related People Groups – References to groups of people that have a distinct geographical association, such as The Citizens of Constantinople (associated with Constantinople), the Bulgars (associated with Bulgaria), and Romans (associated with Rome).  
+4: Geographically Related Events – References to occurrences that are geographically tied, all of which are synods and councils, such as the Holy Ecumenical Synod of Chalcedon (associated with Chalcedon).
+
+It should be noted that the last three categories of references are all dependent on the existence of the first. Many references in these categoires are also references to the actual geographical place with which they are associated (see our [fourth blog post in this series to see how this nesting works](/blog/chronographys-geography-what-counts-as-geographic-reference)).
+
+From these categories I then generated a multitude of different stemma into which I would sort the data.
+
+### Making Friends with MaxQDA
+Initially, I thought of these four different groupings in terms of ArcGIS. ArcGIS separates geographical data into three different kinds: polygons, lines, and points. Deserts, some bodies of water (lakes, oceans, etc.), continents, and regions were thought of as polygons. Other bodies of water (rivers, streams, etc.) and roads were thought of as lines. Cities, forts, and monasteries were thought of as points.
+
+This way of thinking gave me a problematic structure. Once the number of places within cities grew, it seemed illogical to think of these (place) points as being within (city) points. Cities could have become polygons, but it would have been impossible to plot out such polygons for all cities. This classification scheme was soon was dropped in favor of MaxQDA’s “way of thinking” about the data.
+
+MaxQDA is efficient for sorting and resorting. The code groups one generates are easily movable and can be made subsets of other codes. Often these subset chains are three or four levels deep. For example I made Hagia Sofia a subset of Constantinople, which in turn is a subset of Cities, which is in turn a subset of Explicit Geography.
+
+It should also be noted that, as described in our second post and as demonstrated above, we made the decision to adopt a capacious concept of “geography.” One value of MaxQDA is that it easily allows us to select only particular tags or references. Thus, if we want, we can easily choose to run analysis only for “explicit geography” and suppress references which are more subjectively geographic.
+
+Now, using a portion of the category Explicit Geography as an example, I will follow one of these larger code groups down to its smaller parts to demonstrate how the sorting process works for our project.
+
+![](/media/posts/chronographys-geography-to-organize-geographic-references/Code-System-1.png)
+
+_Note, for this and all the images that follow, that there are some categories and items which have few or even zero instances. This is due to the fact that these are screen shots of in-process coding, and due to the fact that MaxQDA has some difficulty with the amount of data I am working with, I work with small sections of the text at a time. Items with “0” tags noted are there because they are holdovers from previously-coded sections of the text_.
+
+In the above example, “Explicit Geography” has one direct subcode, which is “The World.” “The World” is the largest, most all-encompassing data point of Explicit Geography, and correspondingly, all the other geographical data within Explicit Geography has been made a subset of the world. Within “The World” are the subcodes Deserts, Bodies of Water, Cardinal Regions, Cities, Continents, Forts, Monasteries (that are not in cities, as monasteries in cities become subcodes of the city), Mountains, and Regions.
+
+Unlike “The World,” which not only exists as a category I created, but as a “geographic reference” in the text (i.e., the Chronicle does talk about “The World”), some of these subcodes (such as “Cities”) have no independent tags of their own, and so will also show “0”.
+
+Within all of these are more subcodes. In order not to be tedious, I will only examine one single subset – “Cities” – within “The World.” “Cities” contains good examples of how the smaller subcode structures often work.
+
+As can be seen below, the subcodes within “Cities” are specific cities. These cities are sorted alphabetically (except for Constantinople which, as the axis around which the text revolves, I made accessible to expedite coding within Constantinople).
+
+![](/media/posts/chronographys-geography-to-organize-geographic-references/Code-System-2.png)
+
+As indicated by this small selection of the subcodes within cities (many being hapax legomena), we currently have hundreds of distinct cities mentioned by the Chronicle.
+
+### Codes within Codes: Constantinople
+Let’s look one subcode level lower. I will use Constantinople as the example, since it has the most fleshed out set of subcodes of any city in the text.
+
+![](/media/posts/chronographys-geography-to-organize-geographic-references/Code-System-3.png)
+
+While we could sort everything Constantinopolitan together (all could all be conceived of as equivalent points on the map, and sorted as similar data), there are certain subsets within Constantinople which seemed distinct enough to separate from each other.
+
+Separating all items by type allows more comparisons. Furthermore (as we will see in a future post), developing these categories allows us to activate MaxQDAs analytical capabilities. But I did make editorial decisions.
+
+Within “Constantinople,” I sorted items into subcode groups by type when, alternatively, they could have been organized into other groupings, such as regions. Thus, “churches” is a subcode group, instead of sorting all the churches into the districts that they are actually in. Getting all the data together by type at the smaller levels is useful for our interest in comparing different data groups.
+
+On the other hand, in the case of certain buildings (The Hippodrome and The Great Palace), I made them their own unique subcode groups, because this seemed more logical than creating other subgroups for “statues” for instance.
+
+![](/media/posts/chronographys-geography-to-organize-geographic-references/Code-System-4.png)
+
+### Geographic Misnomers or Comparative Categories?
+Setting up the data for analysis in this way has also meant that there are few items that still found a place in our code system even though they do not necessarily fit into the category of geography (even with the wide net that we have cast over that concept, as described in post ?? of this series).
+
+The two most significant groups are the Eastern Emperors (within Geographical Titles) and Religious People Groups (within Geographically Related People Groups). Emperors can be conceived of as having geographical significance—the emperor calls to mind the territory over which he is emperor—but they have been included predominantly as a tool for analysis. In the Chronicle of Theophanes, the change between byzantine emperors is a significant textual marker: they are the most important figure in the chronicle’s dating system, and to some degree each emperor represents a different temporal period.
+
+Religious people groups too can be conceived of in a geographical way—Christians would call to the mind of the reader the Christian world, whereas Muslims would call to mind the territories of the border and beyond — but they have primarily been included for analytical purposes of comparison, rather than for the strength of their geographical reference. We eventually want to ask questions comparing the geographies associated with these different groups of people.
+
+We coded religious groups so that we could locate where and when the text creates different geographic associations with different religious groupings (Christian or otherwise), as well as which emperors have passages filled with criticism, and which emperors are lauded as virtuous and pious, and if particular geographies are consistently associated with either category.
+
+### Conclusions : our reading of the Chronicle
+It should be clear by this point that while there is a logic for sorting all of these codes the way that I have, it should not be taken as absolutist, normative, or prescriptive. Our categories arose from our reading of the text itself, and the particular research questions we anticipate wanting to ask.
+
+This process should also recall [our principle that the text is its own geography](/blog/can-we-map-both-space-and-place-in-historical-narratives). We made our analytical categories derive from this principle.
+
+This decision and method means that though our decision process and rationale should provide a helpful model for other similar projects, we have not developed a universal system. Our coding structure will not necessarily work well for another project. In fact, it would be strange if it did. The decisions outlined above were made because they were practical for this research project: the tagging pattern fits the text.
+
+Our system of coding is itself a reading of the chronicle.

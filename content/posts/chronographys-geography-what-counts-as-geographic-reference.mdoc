@@ -1,0 +1,148 @@
+---
+title: "Chronography’s Geography: What counts as Geographic Reference?"
+date: 2017-07-13
+authors:
+  - Jesse W. Torgerson
+project: theophanes
+excerpt: "By Jesse W. Torgerson and Ethan Yaro Note: This is the fourth in a series devoted to the project “Narrative"
+legacyPath: /2017/07/13/chronographys-geography-what-counts-as-geographic-reference/
+---
+
+By [Jesse W. Torgerson](http://jtorgerson.faculty.wesleyan.edu/) and Ethan Yaro
+
+_Note: This is the fourth in a series devoted to the project “[Narrative and Geography in the Chronicle of Theophanes the Confessor](https://travelerslab.research.wesleyan.edu/geography-and-narrative-in-the-chronicle-of-theophanes/)“. First post [here](/blog/can-we-map-both-space-and-place-in-historical-narratives); second [here](/blog/how-to-show-a-chronographys-geography); third [here](/blog/chronographys-geography-software-structure).  
+_
+
+The approach we are describing in detail here allows us to artificially reconstruct, in our database, something of the passive geography that a ninth-century Byzantine (reading about her or his own City and Empire) would have been relying upon to follow the narrative of the _Chronography_.
+
+Though the process of revealing this geography — and of explaining our methodology! — is painstaking, we find the direct impact of these decisions upon our results makes each of them quite fascinating. In this post, we continue the explication of our methodology for capturing the geography – or, to be more exact, the geographic references – of the _Chronography_ of Synkellos and Theophanes.
+
+Having described how – into what sort of sections – we decided to divide up the text content of the _Chronography_, here we explain what items we decided to “tag” as geographic references.  
+
+### What to tag as a “geographic reference”?
+
+A careful reading of the text immediately revealed that geographic references manifest themselves in a number of ways, some more explicit than others.
+
+1.  **Explicit Geographic References**
+
+Many geographic references are simple, explicit references to “mapeable” locations: places such as cities & buildings; landforms such as mountains & rivers; political zones such as regions & districts, etc..
+
+To give an example of how we would “tag” such items, consider the one-sentence example from the _Chronography_ cited in the previous post:
+
+> **AM 5796**
+> 
+> Diocletian lived privately in his own city at Salon in Dalmatia while Maximianus Herculius lived in Lykaonia.
+
+We have already “tagged” Diocletian as reigning emperor. If we were to now tag this sample sentence for its geography, we would tag (or code) the explicit geographic references: “Lykaonia”, “Salon” (in Dalmatia), _and_ “Dalmatia” (itself).
+
+> **AM 5796**
+> 
+> Diocletian lived privately in his own city at Salon in Dalmatia while Maximianus Herculius lived in Lykaonia.
+
+Even with these “explicit” geographic references, we had to make a subjective decision. Does “Salon in Dalmatia” count as a single reference, or as two?
+
+Our project goals led us to tag “Salon” (in Dalmatia), and “Dalmatia” as two distinct references. Since our primary goal is to track how the text works with a reader’s mental associations, it is undeniable that the text calling attention to Salon’s Dalmatian location brings Dalmatia to mind;  for us it is not sufficient to exclusively specify the correct (Dalmatian) “Salon,” but not Dalmatia.
+
+2.  **Indirect Geographic References**
+
+A significant percentage of the geographic references we tag are not nearly so straightforward.
+
+Some of these are indirect references like “the city,” or “that region,” in which reading the surrounding sentences determines exactly which city, or region is referred to.
+
+An important secondary consideration here is the strength of an evocation. When the _Chronography_ states “the city,” and means “Constantinople,” is that just as much of a geographic reference as if it had stated “Constantinople”? Should we somehow rate indirect geographic references _lower_ since they do not set a specific place name before the reader’s eyes? Or, should we rate them _higher_ since the reader needs to make the stronger mental effort to retain in memory which city or region is being discussed?
+
+Our practice has been: having determined the place that these references mean, we tag indirect references just as though the text had stated the place itself. We have not differentiated for “strength of reference” in our database. “Salon,” “Constantinople,” or “that city” count for the exact same “weight” of geographic reference.
+
+3.  **Vague Geographic References**
+
+A similar issue arises with vague, gesturing geographic references.
+
+Consider two sentences from one entry:
+
+> **AM 5885, AD 392/393**
+> 
+> In this year the pious emperor Theodosius fought bravely against Eugenios at the passes to the Alps, and, after capturing him alive, executed him. … The most Christian emperor … ordering that bishops from the East should come to Rome for this, among whom was sent Akakios of Beroia.
+
+“Passes to the Alps” surely counts as an explicit geographic reference, and it is easy enough to “tag” in MaxQDA as a reference to a mountain range. However – as we will discuss in detail in a future post – this sort of entry is extremely perplexing for one of our desired outputs: a map of all geographic references. What does “the passes to the Alps” look like on a map?
+
+An even more difficult example arises in the second sentence. Plotting “Rome,” or “Beroia” is simple enough, but what about “bishops from the East”? Surely this is a “geographic” reference in that it evokes a region in the mind of the reader. But it is exponentially more difficult to map “the East” than even “passes to the Alps”: should we think of “the East” as shading the entire Eastern Mediterranean and Persia on a map? We also have to be able to decide what _kind_ of a geographic reference this is in order to tag and categoize this reference within MaxQDA. For now we will also set this issue of categorization aside as the subject of our next post.
+
+A second type of “vague” reference is when the current state of scholarship does not allow us to know exactly what is being referred to: we simply cannot be certain what each reference evokes.
+
+For instance, consider this statement in the _Chronography_:
+
+> **AM 5887 (AD 394/5)**
+> 
+> In this year Arkadios, on being appointed _autokrator_, built the big portico opposite the Praetorium.
+
+The Praetorium of Constantinople is understood to be located in the Southern curve of the round Forum of Constantine, but there is no known “Portico of Arkadios” in Constantinople.
+
+There may well have been a portico, as yet unexcavated, heading South out of the Forum of Constantine; one could imagine this portico described as starting “oppposite the Praetorium.” However, Arkadios’ known building activity within Constantinople is focused much further to the West, dominated by his Forum and famous Column. Thus the _Chronography_’s translator, Cyril Mango – a leading expert on the archaeology of Constantinople – was so doubtful as to the existence of an otherwise unattested Portico of Arkadios that he suggested:
+
+> Since Theophanes was making considerable use of his Alexandrian material at this period, this too may well have come from the Alexandrian source and so refer to Alexandria rather than Constantinople.  
+> (p. 113, footnote 2)
+
+What to do? Not only are we unclear where within Constantinople to place this reference to a “Portico of Arkadios,” we don’t actually know if this is Constantinople, Alexandria, or elsewhere. In this case, we decided to follow Mango’s lead, and mark this as a reference to Alexandria. There are many similar judgment calls that we have had to make in creating our database of geographic references.
+
+One more such example – another instance where the simple lack of historical information we possess requires us to take significant interpretive liberties – is worth considering:
+
+> **AM 5878,**
+> 
+> … a small basilica … built at the old Basilica, near the Great one …
+
+The city of Antioch on the Orontes, the location of these buildings, is one of the most important and populous cities of the Eastern Roman empire and, as such, is often mentioned in detail in the _Chronography_. However, archaeology has had little chance to recover its topography.
+
+We can deduce that this sentence almost certainly describes an extension to the pre-Constantinian basilica church (“the old Basilica”), near the famous Constantinian Octagonal Church (“the Great One”).
+
+In these phrases we have, in total, three distinct references to the internal topography of Antioch on the Orontes. The “Old” (pre-Constantinian) basilica would receive two tags, thus:
+
+-   the phrase “a small basilica” (tagged as “The Old Basilica” as an extension on said church)
+-   the phrase “the old Basilica” itself (tagged of course as “The Old Basilica”)
+-   the phrase the “the Great one” (tagged as the “New (Constantinian) Basilica”)
+
+By now the point should be clear: the work of tagging geographic references in a narrative text is much more heavily interpretative than might initially be supposed.
+
+4.  **People and Events as Geographic References**
+
+This category of interpretive decisions captures several different types of items that we have determined _are_ geographic references, but which other readers may think are not.
+
+Potentially the least controversial of these decisions was to tag events tied to specific places.
+
+The most obvious examples of these are church councils, such as the Council of Nicaea in 325. It is true that a mention of the “Council of Nicaea” in an entry hundreds of years after it happened is not a direct reference to the physical city of Nicaea. Nevertheless, while we grant it is indirect, we find the point that “the Council of Nicaea” _does_ recall the city of Nicaea to the mind of the reader compelling enough, to tag such phrases as a geographic reference.
+
+Our decision to identify people groups as geographic references opens up a second category of interpretative tagging. Some might consider people groups as only very tangentially “geographic,” but we have taken instances of “the Gauls” (for example) as geographic references to Gaul (Gallia).
+
+Our justification is that in almost all cases the name of a people group (Gauls/Gallia, Sklavenoi/Sklavinia, Khazars/Khazaria, etc.) is the land wherein this people live.
+
+As with our earlier discussion, the reasoning here is based on our central goal: to capture the place-based references that the text would evoke in the mind of its reader.
+
+A third category of border-line decisions was to tag all references to titles which were themselves tied to any location. Most of these references are explicit, such as citations of episcopal figures, whose very titles are an undeniable reference to a place: “Peter, Bishop of Alexandria.” Thus, every mention of a bishop (and many mentions of priests or monks) ends up counting as a geographic reference. This reasoning process also applies to a number of secular officials.
+
+As a final example of how the decision to include all these sorts of items in our database works in practice, we can consider the first sentence in the following entry.
+
+> **AM 5937**
+> 
+> In this year Kyros, the City prefect and praetorian prefect, a very learned  and competent man, who had both built the city walls and restored all Constantinople, was acclaimed by the Byzantines in the Hippodrome, in the presence and hearing of the emperor \[follows\]: “Constantine built \[the city\], but Kyros restored the City!”
+
+“Kyros the City Prefect” is tagged with the office of “City Prefect,” since this office cannot be understood without reference to Constantinople itself. Likewise, Kyros’ second posting as “Praetorian Prefect” inevitably evokes the Praetorium within Constantinople: in our understanding a reference to a location that is just as strong as “the city walls” or “the Hippodrome.” Furthermore, and more controversially, the final reference to “Kyros” alone is given _two_ geographic references. Reasoning that the reader now understands “Kyros” as “Kyros the City Prefect and Praetorian Prefect,” this second reference to Kyros would be tagged as both “City Prefect” and “Praetorian Prefect.”
+
+We can also use this example to tie in some of this post’s previous points.
+
+“The Emperor” here would be tagged as Theodosius II (the reigning emperor).  
+“Constantine” would be tagged as Constantine I. Even though Constantine is not the reigning emperor, tagging emperors comprehensively allows us to track their relative importance throughout the _Chronography_.  
+“The City” and “Constantinople” would be tagged identically.  
+“The Byzantines” would _also_ be a reference to “Constantinople” since it evokes the people that live in that location, the city of Byzantium.
+
+It should now be clear how we arrived at the statement with which we began our previous post, that approximately 20% of the text can be categorized as making geographic references. In the above example of 51 words, we tagged 16 words (31%) as “geography,” and 3 words as references to an emperor.
+
+**Conclusion:** **the mind of the Reader**
+
+As a transition into our next post, in which we will break down _how_ each of these tags would be categorized, and _why_, here is an image of these overlapping tags in our MaxQDA database:
+
+![](/media/posts/chronographys-geography-what-counts-as-geographic-reference/5937-Screen-shot-with-tags.png)
+
+In all of our decisions about indirect, vague, and other implicit geographic references, we have opted to tag an item as “geography” when we think it is viable to assume that an attentive reader would make a connection between a word (or phrase), and a place. The image above provides an analytical map of how we are using MaxQDA to try to capture something of the associative, overlapping references to place and space that the mind of an attentive reader would categorize as they proceed through the text. Our procedures are directly derived from our primary goal: to capture all of the “place-references” swirling about the mind of a reader of the _Chronography_.
+
+It is worth recalling an important point made earlier in this post: once we have determined that a phrase is a geographic reference it receives the same tagging “weight” as any other reference, no matter how “indirect” it may seem. In our database, all geographic references are created equal.
+
+The driving principle behind our methodology is to tease out references that would otherwise be lost upon the modern reader. By running the risk of possibly over-emphasizing geography, we believe we gain a more careful reading and a fuller appreciation of the density of references that can become a hazy fog for even the most seasoned Byzantinist. Our approach allows us to artificially reconstruct, in our database, something of the passive geography that a ninth-century Byzantine, reading about her or his own City and Empire, would have been relying upon to follow the narrative of the _Chronography_.

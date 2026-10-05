@@ -1,26 +1,274 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Tokens. Paper, ink and a single accent: rubric red, the ink medieval
+   scribes used for headings.
+------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --paper: #f2efe8;
+  --paper-2: #e8e4da;
+  --ink: #161513;
+  --ink-2: #45423c;
+  --ink-3: #69655c;
+  --rule: rgb(22 21 19 / 0.16);
+  --rubric: #b0341e;
+  --on-dark: #f2efe8;
+  --header-h: 3.5rem;
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --paper: #131210;
+    --paper-2: #1d1b18;
+    --ink: #ece8df;
+    --ink-2: #c3beb3;
+    --ink-3: #9a958a;
+    --rule: rgb(236 232 223 / 0.16);
+    --rubric: #e46a4f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #131210;
+  --paper-2: #1d1b18;
+  --ink: #ece8df;
+  --ink-2: #c3beb3;
+  --ink-3: #9a958a;
+  --rule: rgb(236 232 223 / 0.16);
+  --rubric: #e46a4f;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rubric: var(--rubric);
+  --color-on-dark: var(--on-dark);
+
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-garamond), ui-serif, Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --breakpoint-xs: 30rem;
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: var(--paper);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+}
+::selection {
+  background: var(--rubric);
+  color: var(--on-dark);
+}
+:focus-visible {
+  outline: 2px solid var(--rubric);
+  outline-offset: 3px;
+}
+
+@layer components {
+  .gutter {
+    @apply mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-10;
+  }
+  /* Small monospace labels: dates, coordinates, section numbers */
+  .label {
+    @apply font-mono text-[0.72rem] leading-none tracking-[0.08em] uppercase;
+  }
+  .display {
+    @apply font-sans font-medium tracking-[-0.035em];
+  }
+  .link-arrow {
+    @apply inline-flex items-center gap-2 underline decoration-1 underline-offset-[0.3em] transition-colors hover:text-rubric;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------
+   Long-form reading: calm, serif, generous.
+------------------------------------------------------------------- */
+.prose {
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  line-height: 1.65;
+  color: var(--ink);
+  max-width: 68ch;
+}
+.prose > * + * {
+  margin-top: 1.1em;
+}
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: 2.2em;
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+.prose h2 {
+  font-size: 1.6rem;
+}
+.prose h3 {
+  font-size: 1.3rem;
+}
+.prose h4 {
+  font-size: 1.1rem;
+}
+.prose h2 + *,
+.prose h3 + *,
+.prose h4 + * {
+  margin-top: 0.6em;
+}
+.prose a {
+  color: var(--rubric);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  overflow-wrap: anywhere;
+}
+.prose a:hover {
+  text-decoration-thickness: 2px;
+}
+.prose strong {
+  font-weight: 600;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.25em;
+}
+.prose ul {
+  list-style: disc;
+}
+.prose ol {
+  list-style: decimal;
+}
+.prose li + li {
+  margin-top: 0.35em;
+}
+.prose li::marker {
+  color: var(--ink-3);
+}
+.prose blockquote {
+  border-left: 2px solid var(--rubric);
+  padding-left: 1.1em;
+  color: var(--ink-2);
+  font-style: italic;
+}
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.5em 0;
+}
+.prose figure {
+  margin: 2em 0;
+}
+.prose figure img {
+  width: 100%;
+  height: auto;
+  background: var(--paper-2);
+}
+.prose figcaption {
+  margin-top: 0.75em;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--paper-2);
+  padding: 0.1em 0.3em;
+}
+.prose pre {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  background: var(--paper-2);
+  padding: 1em 1.25em;
+  overflow-x: auto;
+}
+.prose pre code {
+  background: none;
+  padding: 0;
+}
+.prose .table-wrap {
+  overflow-x: auto;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.prose th,
+.prose td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.6em 0.75em;
+  border-bottom: 1px solid var(--rule);
+}
+.prose th {
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+/* ------------------------------------------------------------------
+   Motion: only ever decorative, and off for reduced-motion users.
+------------------------------------------------------------------- */
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.draw-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.rise {
+  opacity: 0;
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .draw-line,
+  .rise {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+    transform: none;
+  }
+}
+
+[data-reveal="hidden"] .draw-line,
+[data-reveal="hidden"] .rise {
+  animation-play-state: paused;
 }

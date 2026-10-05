@@ -1,0 +1,53 @@
+---
+title: So you want to map a chronicle in Nodegoat?
+date: 2023-09-15
+authors:
+  - Arla Hoxha
+project: comparing-chronicles
+excerpt: By Arla Hoxha Welcome; this is a guide on how to do it, based on my experience with a 9th-century
+legacyPath: /2023/09/15/so-you-want-to-map-a-chronicle-in-nodegoat/
+---
+
+_Welcome; this is a guide on how to do it, based on my experience with a 9th-century Carolingian chronicle,_ Annals of Fulda_, during Summer 2023, which will also serve as a practical reference_.
+
+Assuming you have already completed step 0, that is, cleaning up and uploading your transcript into the new _Project_, we can get started. Set up your own object types (using the Noadgoat guides) or simply add those used in AH.FULDA (go to _Management_ and add JWT.person, JWT.pleiades etc.). Using existing objects would be best, to save time and avoid confusion. 
+
+Once your objects and transcript are set up, you can start tagging your text with names of people and places, as well as religious festivities, if applicable. If you need to tag something else, communicate with your supervisor and agree on a new object.
+
+On jwt.person:
+
+This one is pretty straight-forward. Every time you see a name in your transcript, tag it. I like to tag by creating new entries (add a new jwt.person entry when I see a new name) as I go. Another way to do it would be to add jwt.person-s beforehand and then tag with existing objects. No best way to do this; depends on what you like most.
+
+On jwt.pleiades:
+
+To set it up: Go to _Pleiades_ (or some other website you are pulling data from) and download the most up-to-date location csv file. This file (I used one with about 40k entries!) will most likely need lots of cleaning up (through excel, R, etc) so it is easier for Nodegoat to process it. Once you have your clean file, you are ready to import (Model-Import-Import csv file). Go to Model-Import-Import Template, then map your csv file to a data model (an object, new or existing). Make sure all the columns of the file correspond to the correct element of your object and run the template. Voila! Ready for use. 
+
+Tagging: Works exactly like person tagging. However, Pleiades is a scholarly portal of ancient locations, which raises two issues: 1) Locations will often appear only in their Latin name which you need to look up to find the location you need in Pleiades and 2) sometimes Pleiades will not have the location you are looking for. In the first case, track down the Latin name and leave a short note/ link to explain where you found it. In the second, use the already set up object with GeoNames locations (this is still not fully functional; we’re working on it!) or use a general/broader location from Pleiades. 
+
+Every once in a while I found that during clean up I had deleted a location that would show up on the text that I would have to manually add to my jwt.pleiades. Keep a Pleiades search tab open, just in case. 
+
+Once smaller elements are tagged, you can start tagging events. What is an event? It’s hard to say, but here’s a semi-coherent way of deciding what to tag together. 
+
+An event should have:
+
+Time: **open or single**—one date or no date
+
+Place: single or multiple if unspecified
+
+Agent: single, although there can be multiple
+
+Narrative: **single**
+
+With event tagging you are turning a chronicle entry into bite size pieces of single events. An event does not need to be one action, although it can. Bite-sized does not mean every sentence has to be one event (although, sometimes it is). Most events are a single narrative happening on a specified date (or over an unspecified time frame that captures the whole event) and place. Place is probably the last thing to focus on because a single event can sometimes take place over several locations. An event can contain one or more characters and one or  more actions. Naming is difficult, but choose to be descriptive over detailed. Think ‘how can I say what’s going on using the least amount of words?’ Sometimes centering the title of the event entry on a word in the text can make the task easier as well. Deciding how to tag dates was difficult but we agreed on writing down the exact time in the descriptor if it is given by the text (even if not in date form, i.e.: spring, november, mid august etc) and using a sequence in the date sub-object.
+
+Reconciliation is useful but not flawless. Create a database of objects for it to pull from before using it. I already updated the _places_ reconciliation to draw from _Pleiades_. Its biggest flaw, I think, is that it cannot detect and generate objects for you. You need to already have the objects you are reconciling and Nodegoat can tag them for you. Or you can go back and manually tag them yourself. Initially, I recommend manual tagging, so you have a library to pull from.
+
+The _Fulda_ project is now completed and it can be used as reference for your own work. When in doubt go back to the model or this guide. This is of course, an incomplete guide; for detailed how-to’s, check Nodegoat’s Guides and Documentation pages. Different projects require different accommodations but I hope this will be helpful to anyone getting started with text mapping in Nodegoat. 
+
+PS/ Important notes:
+
+1.  When there is no place specified leave places tag empty
+2.  Tag dates as sequence (i.e.: 871 01, 871 02 etc) based on the order they appear in text, not on actual chronology 
+3.  Fill date tag in the description with exact time (if provided by the text)
+4.  Religious celebrations are not tagged as separate events (but usually as part of the previous one) because they have their own tags (jwt.religious) and are usually somehow integrated into the other event
+5.  When the location specified in the text cannot be found anywhere tag with broader location (if you cant find x village or y palace in Bavaria tag them as Bavaria)

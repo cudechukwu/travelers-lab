@@ -1,0 +1,64 @@
+---
+title: Anti-Jewish Riots and Royal Communication Networks in Aragon
+date: 2019-01-14
+authors:
+  - Jesse W. Torgerson
+project: couriers-of-aragon
+excerpt: "Royal Communication Networks in Aragon During Anti-Jewish Riots : 1391-1392 by Kaitlyn Thomas-Franz Introduction This past semester I had the"
+legacyPath: /2019/01/14/anti-jewish-riots-and-royal-communication-networks-in-aragon/
+---
+
+**Royal Communication Networks in Aragon During Anti-Jewish Riots : 1391-1392**
+
+by Kaitlyn Thomas-Franz
+
+**Introduction**
+
+This past semester I had the opportunity to work with Professor Franklin Lyons on an exploratory data analysis project relating to a series of anti-Jewish riots that occurred in the crowns of Castile and Aragon between 1391 and 1392.  The initial intent for the project was to gather as much information as possible for each city where a riots were recorded as having taken place, generating a relative timeline of events relating to the riots for each of the cities.
+
+**Method**
+
+Starting our data collection by focusing of the territory of Aragon, I performed a close reading of both Benjamin Gampel’s book _Anti-Jewish Riots in the Crown of Aragon and the Royal Response_ and Abigail Agresta’s article on the riots that occurred in the city of Valencia, “‘Unfortunate Jews’ and Urban Ugliness: Crafting a Narrative of the 1391 Assault on the Jueria of Valencia.”  Noting each line of text where a date was given for a particular event, I recorded each of these incidents on an Excel spreadsheet.  I also tagged each events using the following categories:
+
+riot\_1391  
+legal\_pre  
+legal\_post  
+violence\_post  
+violence\_pre  
+communication  
+travel\_royal\_official  
+travel\_king  
+and  
+travel\_city\_representative.
+
+The first label notes the date or dates when rioting occurred in a city.  The “legal” labels refer to judicial actions that occurred either before or after the riots, including legal actions against Jewish communities and the arrest/execution of rioters.  In connection, the “protection” label refers to any official decrees specifying the protection of the Jewish community of a city independent of judicial punishments.  The “violence” labels note events of violence committed either against the Jews or against a city that are distinct from the riots themselves while the “communication” label notes letters sent between royal and city officials.  Finally, the “travel” labels note the movement of royal and city officials across cities.
+
+**Network Analysis: Preliminary Network**
+
+When I finished my preliminary timelines of events for Aragon, however, I noticed that  the majority of the information about the events was derived from letters written between royal and city officials.  Thus, Professor Franklin Lyons and I decided to narrow to scope of the project for the time being to a network analysis of the communication webs to see what sort of information could be gathered about the institutional response to the riots in relation to different groups’ geographical jurisdictions.  In all, the network I generated is comprised of 291 letters from King Joan (the ruler of Aragon), Queen Iolant (his wife), and other Royal and City Officials, with a main focus on communications being between July 1391 and April 1392, which is the month in which major rioting ceased in Aragon.  Using Gephi, I generated a preliminary network that I then color-coded based on its modularity centrality, the number of distinct clusters within the broader network.  As seen below, the network is comprised of three distinct communications groups: King Joan, Queen Iolant, and Duke Marti and Duchess Maria (Joan’s brother and his sister-in-law).
+
+![](/media/posts/anti-jewish-riots-and-royal-communication-networks-in-aragon/Image-1-Modularity_Network.jpg)
+
+**Networks: Duke Marti and Duchess Maria**
+
+Curious as to how the sub-networks of each of these royal figures connected to their respective jurisdictions, I generated a series of maps in R that reflect the different regions to which King Joan, Queen Iolant, Duke Marti and Duchess Maria sent communications and noted the content of each geographically-based link.  Below I have feature examples of the networks I created for Duke Marti and his wife.
+
+![](/media/posts/anti-jewish-riots-and-royal-communication-networks-in-aragon/Image-2-Detail-A.jpg)
+
+![](/media/posts/anti-jewish-riots-and-royal-communication-networks-in-aragon/Image-2-Detail-B.jpg)
+
+_Image: Map of Duke Marti’s communications network_
+
+Present in Valencia when riots occurred in the city in July, Duke Marti remains there for the remainder of the year.  As the crown prince, Marti had direct responsibility for the city, which is a potential reason why there are so few communications from King Joan to the city during the first month following the rioting.  Marti was also the first duke of Montblanc, which explains his communications with a city far from his purview during the rioting activity.  Nonetheless, the network also highlights that Duke Marti maintained extensive communications with both his brother and his wife, thereby suggesting a more unified royal reaction to the rioting occurring in the city.
+
+![](/media/posts/anti-jewish-riots-and-royal-communication-networks-in-aragon/Image-3-Detail-A.jpg)
+
+![](/media/posts/anti-jewish-riots-and-royal-communication-networks-in-aragon/Image-3-Detail-B.jpg)
+
+_Image: Map of Duchess Maria’s communications network_
+
+While the duchess resided in Tarrega, Catalonia for much of 1391, she maintained consistent communications with cities in the northern section of Aragon.  Because her father was the lord of Luna and the other two regions were under the jurisdiction of her husband, her contact with those cities is evidence of her use of family networks as a means of both relaying information about the riots to those cities as well as attempting to prevent rioting in those regions.  Furthermore, this network demonstrates that Maria shared equal responsibility with her husband in the operation of their jurisdiction, acting as his political representative when he was occupied by the rioting in Valencia.
+
+**Conclusion**
+
+This project was a valuable introduction to the Traveler’s Lab, allowing me to learn how to use both R and Gephi to generate intricate communication networks.  In the future, I hope to continue with this project by expanding the number of featured communications as the majority are from King Joan and other royal officials as opposed to city officials.  Furthermore, I hope to gather additional sources in order to develop similar event timelines and communications networks for the rioting activity in the crown of Castile.

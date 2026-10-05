@@ -1,0 +1,55 @@
+---
+title: "CDER Project update: Mapping Byzantine Seals and People"
+date: 2024-09-08
+authors:
+  - Alex Williams
+project: cder
+excerpt: "By Alex Williams At the time of the last blog post (May 2024) about Constantinopolitana: A Database of East Rome"
+legacyPath: /2024/09/08/cder-project-update-mapping-byzantine-seals-and-people/
+---
+
+At the time of the last blog post (May 2024) about Constantinopolitana: A Database of East Rome (CDER) project, we celebrated the creation of a prototype database, consisting of multiple types of objects and artifacts from across Constantinople. Each object type had about 20-100 data points (to read more about this process, check out [our last blog post](/blog/constantinopolitana)!). Of course, lots of this data is directly integrated into CDER from preexisting datasets, many of them having thousands of entries. 
+
+With permission from the owners, we want to figure out a methodology to add these items into CDER to help find wider connections than one institution would be able to create or develop on their own.  This involves combining large datasets, a more technical task compared to the prototype, as there is lots of data cleaning and preparation involved.
+
+This summer, I worked on combining existing data on Byzantine lead seals with existing prosopographic data (data describing individuals alive during the Byzantine empire). 
+
+**Datasets and Process**
+
+Byzantine lead seals were used to seal letters sent across the empire. These seals contain information about the sender such as their name, title, and occupation, allowing insights about people and the bureaucracy. Imperial titles, known as dignities, demonstrated a seal owners’ place in the imperial hierarchy. An owner’s office, or occupation, also appears on a seal. 
+
+For this stage of the project, we worked with roughly 16,000 seals from the [Dumbarton Oaks(DO) Byzantine Seal collection](https://www.doaks.org/resources/seals), in collaboration with Johnathan Shea. This collection has already been digitized. A crucial part of integrating this data into our model was making the seals data into relational data, meaning that some parts of the data (in this case dignities and offices) get tables separate from the seals table. 
+
+We chose to work on data regarding people and seals in conjunction because of the large, preexisting, and already partially connected datasets. Byzantine prosopographic data has a wide overlap with seals, some of which is already documented. This is because the prosopographies use seals as evidence for the existence of people. For example, we might know new information about a person from a seal, or that might be the only record that a person existed. With this project, our goal was not to create insights or establish new ‘readings’ of the seals to create connections with people, but rather to digitize and store existing connections in a database, in addition to creating a model for incorporating other types of data into CDER. 
+
+For the data regarding people, I worked with the [Prosopography of the Byzantine World(PBW)](https://pbw2016.kdl.kcl.ac.uk/) database covering 1025-1180 AD. I also did some experimenting (hopefully more to come) with the [Prosopography of the Middle Byzantine Period (PMBZ)](https://www.degruyter.com/database/pmbz/html?lang=en) covering 641-1025 AD.
+
+There is already some data overlap between the DO seals collection and the PBW. A lot of my time was spent cleaning up the data and making it consistent, and understandable to our model, which means that each row has to contain the same columns. Each column must contain its information in similar formats across rows. There were also lots of text analysis strategies used to extract information from how it was originally formatted in a sentence, phrase, paragraph, or description. We also learned methods for importing into Nodegoat (the digital humanities software we are using to store the data), as well as methods for making connections technically. 
+
+**Visualizations**
+
+Below are some graphs and descriptions of what is possible with this data as a database or dataset, and which point towards the next steps for analysis.
+
+I want to preface that these graphs do not give a perfect, or even good, representation of what’s going on in history, or even in the seals dataset. First, the number of seals is not necessarily representative of the actual number of offices or dignities of a certain type, or the number of people in these roles. Some offices might have been sending letters more often (so there would be an overrepresentation of that office on seals). In addition, visualization is more complicated because of the way seals are dated. We know some of the seals are from a certain set of years, and many of them can be dated to a single century. But for some seals, we are not sure of the exact century, and so they would be dated to two or more centuries. In the graphs below, I wanted to avoid double counting the seals, so the date used is the first date in the estimate. For example, both a seal that we know is from the eighth century as well as one we know is either in the eighth or ninth century would be represented in these graphs as part of the eighth century.
+
+![](/media/posts/cder-project-update-mapping-byzantine-seals-and-people/Screenshot-2025-06-14-at-4.10.06-PM.png "Figure 1")
+
+Figure 1 depicts the number of seals over time, with colors representing the offices of the seal’s owner. Figure 2 shows the seal count for the top six overall dignities over different centuries.
+
+![](/media/posts/cder-project-update-mapping-byzantine-seals-and-people/Screenshot-2025-06-14-at-4.13.16-PM.png "Figure 2")
+
+![](/media/posts/cder-project-update-mapping-byzantine-seals-and-people/Screenshot-2025-06-14-at-4.14.51-PM.png "Figure 3")
+
+Figures 3 focuses on the dignity ‘Patrikios’ which was high ranking in the 8th – 10th centuries, losing importance through the 11th. (Shea, 2020; Kazhan, 1991). Figure 3 shows the different offices on seals with the dignity Patrikios. 
+
+A historian can use these visualizations to understand how to develop their inquiry. For example, a historian interested in the hierarchy of a specific office such as the dioiketes could use a visualization such as Fig. 3 to understand which other offices ranked similarly over time. 
+
+![](/media/posts/cder-project-update-mapping-byzantine-seals-and-people/Screenshot-2025-06-14-at-4.16.23-PM.png "Figure 5")
+
+Figure 5 shows a section of a network graph for the dignity Patrikios. The largest other nodes are dignities ‘imperial protospartharios’ and ‘anypatos’, as well as the office ‘strategos’, the name for a military general. You can also see tight clusters of seals together in the graph: these clusters are made up of parallel and related seals, some of which are identical. Some broader clusters might be hints to explore certain connections further. The connection with people (white dots in Fig. 5), could allow historians to better date seals, if there are other sources about a specific person, or understand an individual’s trajectory through offices and dignities with more context.
+
+**Next Steps**
+
+There still are some technical steps to finish up this part of the project, consisting of changing data types and storage methods to store values more efficiently. We are also planning on connecting the seals data to the PMBZ. These connections are slightly more complicated as the PMBZ does not contain direct references to the new format of seals, so bibliographic information on each seal involved has to be extracted, normalized, and then matched to bibliographic information in the DO collection. For the lab as a whole, this semester we are going to work on building structure for other objects (statues), as well as continuing our focus on buildings and incorporating location and geographical information into the data. 
+
+_Note: This blog post focuses more on the conceptual aspects of the project. If you are interested in any technical details, reach out to apwilliams@wesleyan.edu._
