@@ -14,8 +14,8 @@ export function SiteFooter() {
       <div className="gutter grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <p className="max-w-sm text-ink-2">
-            A multi-campus research hub at Wesleyan University for the movement of information, people and
-            objects before industrial travel.
+            An international research collaboration based at Wesleyan University, studying the movement of
+            information, people and objects before industrial travel.
           </p>
           <Link href="/get-involved" className="link-arrow mt-5 text-[0.95rem]">
             Get involved <span aria-hidden>→</span>

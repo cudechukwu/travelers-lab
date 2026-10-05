@@ -51,7 +51,7 @@ export default async function GetInvolvedPage() {
     <>
       <PageHead
         eyebrow="Get involved"
-        title="Join the lab"
+        title="Opportunities for students and scholars"
         intro="We welcome connections and comments. Send general enquiries, or specific requests about collaboration and participation, directly to one of the faculty below."
       />
 

@@ -2,11 +2,15 @@ import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { NetworkMap, hasSite } from "@/components/NetworkMap";
 import { PostRow, SectionHead } from "@/components/blocks";
-import { ProjectList, ProjectTimeline, centuriesSpanned } from "@/components/projects";
+import { ProjectList, ProjectTimeline, centuryRange } from "@/components/projects";
 import { getPeople, getPosts, getProjects } from "@/lib/content";
 
-const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+const NUMBER_WORDS = [
+  "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+  "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
+];
 const numberWord = (n: number) => NUMBER_WORDS[n] ?? String(n);
+const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export default async function HomePage() {
   const [projects, posts, people] = await Promise.all([getProjects(), getPosts(), getPeople()]);
@@ -34,9 +38,9 @@ export default async function HomePage() {
           </p>
           <div className="mt-12 grid gap-8 text-[1.02rem] leading-relaxed text-ink-2 sm:grid-cols-2">
             <p>
-              Our projects use the tools humanists now call “digital” — GIS, text analysis, network analysis, data
-              visualization — but we don’t restrict ourselves to them. Whatever turns exacting source work into new
-              ways of seeing the past is fair game.
+              Our projects use the tools humanists now call “digital”, such as GIS, text analysis, network analysis
+              and data visualization, but we don’t restrict ourselves to them. Methods vary according to the sources
+              and questions of each project.
             </p>
             <p>
               Established with Wesleyan’s Quantitative Analysis Center and supported by WesGIS, the lab brings
@@ -55,9 +59,9 @@ export default async function HomePage() {
           label="Research"
           title={
             <>
-              {projects.length} projects across{" "}
-              <span className="block whitespace-nowrap font-serif font-normal italic tracking-[-0.02em]">
-                {centuriesSpanned(projects)} centuries.
+              {capitalise(numberWord(projects.length))} projects spanning{" "}
+              <span className="block font-serif font-normal italic tracking-[-0.02em]">
+                {centuryRange(projects)}.
               </span>
             </>
           }
@@ -107,8 +111,8 @@ export default async function HomePage() {
             label="The network"
             title={
               <>
-                Researchers across {numberWord(institutions.length)} universities in{" "}
-                <span className="font-serif font-normal italic tracking-[-0.02em]">the U.S. and Europe.</span>
+                The Travelers’ Lab includes researchers at {numberWord(institutions.length)} universities in{" "}
+                <span className="whitespace-nowrap font-serif font-normal italic tracking-[-0.02em]">the United States and Europe.</span>
               </>
             }
           />
@@ -135,7 +139,7 @@ export default async function HomePage() {
 
       {/* Methods */}
       <section className="gutter py-20 lg:py-28">
-        <SectionHead label="Methods" title="Old sources, new instruments." />
+        <SectionHead label="Methods" title="Methods and tools" />
         <div className="lg:grid lg:grid-cols-12">
           <ul className="display flex flex-wrap gap-x-3 gap-y-1 text-[clamp(1.35rem,2.5vw,2.1rem)] leading-[1.2] tracking-[-0.03em] text-ink-3 lg:col-span-9 lg:col-start-4">
             {methods.map((m, i) => (
@@ -152,9 +156,9 @@ export default async function HomePage() {
       <section className="bg-rubric text-on-dark">
         <div className="gutter grid gap-12 py-16 lg:grid-cols-12 lg:py-24">
           <div className="lg:col-span-5">
-            <p className="label text-on-dark/70">¶ Get involved</p>
+            <p className="label text-on-dark/70">¶ Students and scholars</p>
             <h2 className="display mt-6 text-[clamp(2.25rem,4.9vw,4.5rem)] leading-[0.95] tracking-[-0.045em]">
-              Join the lab.
+              Get involved
             </h2>
           </div>
           <div className="grid gap-10 sm:grid-cols-2 lg:col-span-6 lg:col-start-7 lg:self-end">

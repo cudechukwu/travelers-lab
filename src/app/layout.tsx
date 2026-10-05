@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s · Travelers’ Lab",
   },
   description:
-    "A multi-campus research hub at Wesleyan University studying the movement of information, people and objects before industrial travel.",
+    "An international research collaboration based at Wesleyan University, studying the movement of information, people and objects before industrial travel.",
   // Prototype: keep it out of search engines until the lab approves it
   robots: { index: false, follow: false },
 };
