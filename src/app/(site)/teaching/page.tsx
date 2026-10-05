@@ -41,7 +41,7 @@ export default async function TeachingPage() {
           {sections.map((s, i) => (
             <section key={s.slug} id={s.slug} className="mt-16 scroll-mt-24 border-t border-rule pt-10">
               <p className="label text-ink-3">Course {String(i + 1).padStart(2, "0")}</p>
-              <h2 className="display mt-4 max-w-[24ch] text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05]">{s.title}</h2>
+              <h2 className="display mt-4 max-w-[24ch] text-[clamp(1.5rem,2.5vw,1.95rem)] leading-[1.05]">{s.title}</h2>
               <Prose node={s.node} className="mt-8" />
             </section>
           ))}

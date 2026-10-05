@@ -42,7 +42,7 @@ export default async function PostPage(props: PageProps<"/blog/[slug]">) {
             </>
           )}
         </nav>
-        <h1 className="display mt-8 max-w-[24ch] text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.02] tracking-[-0.04em]">
+        <h1 className="display mt-8 max-w-[24ch] text-[clamp(1.9rem,3.5vw,3.15rem)] leading-[1.05] tracking-[-0.04em]">
           {post.title}
         </h1>
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.95rem] text-ink-2">

@@ -46,7 +46,7 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
           </nav>
           <StatusTag status={project.status} />
         </div>
-        <h1 className="display mt-8 max-w-[20ch] text-[clamp(2.5rem,6vw,5.75rem)] leading-[0.97] tracking-[-0.045em]">
+        <h1 className="display mt-8 max-w-[20ch] text-[clamp(2rem,4.2vw,4rem)] leading-[1] tracking-[-0.045em]">
           {project.title}
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-2 lg:text-xl">{project.summary}</p>
@@ -57,7 +57,7 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
           {facts.map((f, i) => (
             <div
               key={f.label}
-              className={`py-6 ${i % 2 ? "border-l border-rule pl-5" : "pr-5"} ${i < facts.length - 2 ? "border-b border-rule lg:border-b-0" : ""} lg:px-0 ${i > 0 ? "lg:border-l lg:pl-6" : ""}`}
+              className={`py-6 ${i % 2 ? "border-l border-rule pl-5" : "pr-5"} ${i < facts.length - 2 ? "border-b border-rule lg:border-b-0" : ""} lg:px-0 ${i > 0 ? "lg:border-l lg:border-rule lg:pl-6" : ""}`}
             >
               <dt className="label text-ink-3">{f.label}</dt>
               <dd className="mt-2.5 text-[0.98rem]">{f.value}</dd>
@@ -108,7 +108,7 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
 
       {related.length > 0 && (
         <section id="lab-notes" className="gutter scroll-mt-20 pb-20">
-          <h2 className="display mb-8 text-[clamp(1.75rem,3.5vw,2.75rem)] leading-none">Lab notes on this project</h2>
+          <h2 className="display mb-8 text-[clamp(1.5rem,2.5vw,1.95rem)] leading-none">Lab notes on this project</h2>
           <ul className="border-b border-rule">
             {related.map((post) => (
               <PostRow key={post.slug} post={post} projects={projects} />
@@ -124,7 +124,7 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
         <div className="gutter flex items-center justify-between gap-6 py-10 lg:py-14">
           <span>
             <span className="label text-ink-3">Next project</span>
-            <span className="display mt-3 block text-[clamp(1.75rem,4vw,3.25rem)] leading-none group-hover:text-rubric">
+            <span className="display mt-3 block text-[clamp(1.5rem,2.8vw,2.3rem)] leading-none group-hover:text-rubric">
               {next.shortTitle}
             </span>
           </span>

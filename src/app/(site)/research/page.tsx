@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHead, ProjectCard } from "@/components/blocks";
+import { PageHead } from "@/components/blocks";
+import { ProjectList, ProjectTimeline } from "@/components/projects";
 import { getProjects } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Research" };
@@ -19,43 +20,47 @@ export default async function ResearchPage() {
       />
 
       <section className="gutter py-16 lg:py-24">
-        <h2 className="label mb-8 text-ink-3">Active · {active.length}</h2>
-        <div className="grid border-l border-t border-rule md:grid-cols-2">
-          {active.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} index={i} />
-          ))}
+        <ProjectTimeline projects={projects} />
+        <div className="mb-8 mt-16 flex items-baseline justify-between gap-6 md:mt-24">
+          <h2 className="display text-[clamp(1.6rem,2.8vw,2.3rem)] leading-none">Active projects</h2>
+          <p className="label text-ink-3">{active.length} projects</p>
         </div>
+        <ProjectList projects={active} />
       </section>
 
-      <section id="archive" className="gutter scroll-mt-20 pb-20 lg:pb-32">
-        <div className="mb-8 flex items-baseline justify-between gap-6">
-          <h2 className="display text-[clamp(2rem,4vw,3.25rem)] leading-none">The archive</h2>
-          <p className="label text-ink-3">{archived.length} projects</p>
-        </div>
-        <ul className="border-b border-rule">
-          <li className="label hidden border-t border-rule py-3 text-ink-3 md:grid md:grid-cols-12 md:gap-6">
-            <span className="md:col-span-5">Project</span>
-            <span className="md:col-span-2">Period</span>
-            <span className="md:col-span-2">Region</span>
-            <span className="md:col-span-3">Lead</span>
-          </li>
-          {archived.map((p) => (
-            <li key={p.slug} className="border-t border-rule">
-              <Link
-                href={`/research/${p.slug}`}
-                className="group grid gap-1 py-5 transition-colors hover:bg-paper-2 md:grid-cols-12 md:gap-6 md:px-0"
-              >
-                <span className="md:col-span-5">
-                  <span className="display text-xl tracking-[-0.02em] group-hover:text-rubric">{p.title}</span>
-                  <span className="mt-1 block text-[0.92rem] text-ink-3 md:pr-6">{p.summary}</span>
-                </span>
-                <span className="text-[0.92rem] text-ink-2 md:col-span-2 md:pt-1">{p.period}</span>
-                <span className="text-[0.92rem] text-ink-2 md:col-span-2 md:pt-1">{p.region}</span>
-                <span className="text-[0.92rem] text-ink-2 md:col-span-3 md:pt-1">{p.leads.join(", ")}</span>
-              </Link>
+      {/* Same dark band as the homepage network section */}
+      <section id="archive" className="scroll-mt-20 bg-band py-20 text-on-dark lg:py-32">
+        <div className="gutter">
+          <div className="mb-8 flex items-baseline justify-between gap-6">
+            <h2 className="display text-[clamp(1.6rem,2.8vw,2.3rem)] leading-none">The archive</h2>
+            <p className="label text-on-dark/60">{archived.length} projects</p>
+          </div>
+          <ul className="border-b border-on-dark/15">
+            <li className="label hidden border-t border-on-dark/15 py-3 text-on-dark/60 md:grid md:grid-cols-12 md:gap-6">
+              <span className="md:col-span-5">Project</span>
+              <span className="md:col-span-2">Period</span>
+              <span className="md:col-span-2">Region</span>
+              <span className="md:col-span-3">Lead</span>
             </li>
-          ))}
-        </ul>
+            {archived.map((p) => (
+              <li key={p.slug} className="border-t border-on-dark/15">
+                <Link
+                  href={`/research/${p.slug}`}
+                  className="group grid gap-1 py-5 transition-colors hover:bg-on-dark/5 md:grid-cols-12 md:gap-6"
+                >
+                  <span className="md:col-span-5">
+                    {/* lighter red: the standard rubric is too dark to read on this background */}
+                    <span className="display text-xl tracking-[-0.02em] group-hover:text-[#e46a4f]">{p.title}</span>
+                    <span className="mt-1 block text-[0.92rem] text-on-dark/60 md:pr-6">{p.summary}</span>
+                  </span>
+                  <span className="text-[0.92rem] text-on-dark/80 md:col-span-2 md:pt-1">{p.period}</span>
+                  <span className="text-[0.92rem] text-on-dark/80 md:col-span-2 md:pt-1">{p.region}</span>
+                  <span className="text-[0.92rem] text-on-dark/80 md:col-span-3 md:pt-1">{p.leads.join(", ")}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
     </>
   );

@@ -42,6 +42,8 @@ type ProjectMeta = {
   summary: string;
   period: string;
   region: string;
+  startYear: number;
+  endYear: number;
   leads: string[];
   team?: string[];
   methods: string[];
@@ -60,6 +62,8 @@ const PROJECTS: ProjectMeta[] = [
       "A relational database and interactive map of every object known to have existed in Byzantine Constantinople.",
     period: "ca. 250–1453",
     region: "Constantinople",
+    startYear: 250,
+    endYear: 1453,
     leads: ["Jesse W. Torgerson", "A.L. McMichael"],
     methods: ["Nodegoat", "Relational databases", "Spatio-temporal mapping"],
     links: [{ label: "Nodegoat platform", url: "https://nodegoat.net" }],
@@ -72,9 +76,11 @@ const PROJECTS: ProjectMeta[] = [
     status: "active",
     order: 2,
     summary:
-      "Treating shared events — not texts — as the unit of analysis, to trace how information moved between Carolingian chronicles.",
+      "Treating shared events, rather than texts, as the unit of analysis to trace how information moved between Carolingian chronicles.",
     period: "9th century",
     region: "Carolingian Europe",
+    startYear: 714,
+    endYear: 901,
     leads: ["Jesse W. Torgerson"],
     team: [
       "Diana Q. Tran — Project Manager",
@@ -93,9 +99,11 @@ const PROJECTS: ProjectMeta[] = [
     status: "active",
     order: 3,
     summary:
-      "How royal, episcopal and city governments moved — and withheld — information through networks of runners and ambassadors.",
+      "How royal, episcopal and city governments moved and withheld information through networks of runners and ambassadors.",
     period: "14th century",
     region: "Crown of Aragon",
+    startYear: 1300,
+    endYear: 1420,
     leads: ["Adam Franklin-Lyons"],
     methods: ["GIS", "Network analysis"],
   },
@@ -109,6 +117,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "Reconstructing the itineraries of medieval English bishops from their registers and acta.",
     period: "13th–15th centuries",
     region: "England",
+    startYear: 1200,
+    endYear: 1500,
     leads: ["David Gary Shaw"],
     team: [
       "Stephanie Ling",
@@ -130,6 +140,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "A student-built, place-based encyclopedia of Byzantine Constantinople — the forerunner of C-DER.",
     period: "Byzantine era",
     region: "Constantinople",
+    startYear: 330,
+    endYear: 1453,
     leads: ["Jesse W. Torgerson"],
     methods: ["ArcGIS Online", "StoryMaps"],
   },
@@ -143,6 +155,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "Mapping every place named in a ninth-century Byzantine chronicle to rethink its historical geography.",
     period: "AD 284–813",
     region: "Eastern Mediterranean",
+    startYear: 284,
+    endYear: 813,
     leads: ["Jesse W. Torgerson"],
     methods: ["Recogito", "GIS", "GitHub"],
   },
@@ -157,6 +171,8 @@ const PROJECTS: ProjectMeta[] = [
       "The correspondence network of a fourteenth-century Tuscan trading company, from Florence to Barcelona and beyond.",
     period: "1335–1410",
     region: "Mediterranean",
+    startYear: 1335,
+    endYear: 1410,
     leads: ["Adam Franklin-Lyons"],
     methods: ["Network analysis", "Sonification"],
   },
@@ -170,6 +186,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "Reconstructing a Cistercian monk’s social network from the sources of his 800 miracle stories.",
     period: "ca. 1180–1240",
     region: "Rhineland",
+    startYear: 1180,
+    endYear: 1240,
     leads: ["Helen Birkett"],
     methods: ["Network analysis"],
   },
@@ -183,6 +201,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "Mapping where the orders of friars settled across England, and what their networks of houses reveal.",
     period: "13th century onward",
     region: "England",
+    startYear: 1220,
+    endYear: 1540,
     leads: ["David Gary Shaw"],
     methods: ["GIS"],
   },
@@ -196,6 +216,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "A shared, open dataset of royal and episcopal itineraries from across medieval Europe.",
     period: "Later Middle Ages",
     region: "Europe",
+    startYear: 1200,
+    endYear: 1500,
     leads: ["Adam Franklin-Lyons", "David Gary Shaw"],
     methods: ["Open data", "GitHub"],
   },
@@ -209,6 +231,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "Charting how monasteries, hospitals and, finally, inns came to shelter travellers.",
     period: "ca. 1000–1500",
     region: "England",
+    startYear: 1000,
+    endYear: 1500,
     leads: ["David Gary Shaw"],
     methods: ["GIS"],
   },
@@ -222,6 +246,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "How England’s itinerant and central courts generated — and demanded — mobility.",
     period: "Long 13th century",
     region: "England",
+    startYear: 1200,
+    endYear: 1350,
     leads: ["David Gary Shaw"],
     methods: ["GIS"],
   },
@@ -235,6 +261,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "Networks, geography and the expected speed of communication in surviving medieval correspondence.",
     period: "Later Middle Ages",
     region: "England & Italy",
+    startYear: 1250,
+    endYear: 1500,
     leads: ["David Gary Shaw"],
     methods: ["Network analysis"],
   },
@@ -248,6 +276,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "Usable maps and shapefiles of the roads described in early English sources.",
     period: "16th century",
     region: "England",
+    startYear: 1540,
+    endYear: 1600,
     leads: ["David Gary Shaw"],
     methods: ["GIS", "Shapefiles"],
   },
@@ -261,6 +291,8 @@ const PROJECTS: ProjectMeta[] = [
     summary: "Watches, snuffboxes and lottery tickets: the pocket-sized objects that went missing in early modern London.",
     period: "18th century",
     region: "London",
+    startYear: 1700,
+    endYear: 1800,
     leads: ["Stephanie Koscak"],
     methods: ["Newspaper advertisements"],
   },
@@ -291,12 +323,18 @@ const USERNAMES: Record<string, string> = {
 // Fixes for roles the faculty page formats inconsistently, and dead profile links
 const PEOPLE_OVERRIDES: Record<string, Partial<Person>> = {
   "jesse-w-torgerson": {
-    role: "Associate Professor of Letters, Medieval Studies & History",
+    // from the Wesleyan directory, October 2026
+    role: "Director of Digital Humanities; Associate Professor of Letters, History & Medieval Studies",
     institution: "Wesleyan University",
+    email: "jtorgerson@wesleyan.edu",
+    url: "https://www.wesleyan.edu/about/directory/profile.html?id=jtorgerson",
+    order: 0, // listed first among faculty
   },
+  "chukwudi-udechukwu": { group: "alumni" },
   "pavel-oleinikov": { role: "Associate Director, Quantitative Analysis Center", institution: "Wesleyan University" },
   "silke-schwandt": { role: "Professor of Digital History", institution: "Bielefeld University" },
-  "adam-franklin-lyons": { url: undefined }, // Marlboro College closed in 2020
+  // Marlboro College closed in 2020; not listed as a contact on Get involved
+  "adam-franklin-lyons": { url: undefined, hideFromContact: true },
 };
 
 // ---------------------------------------------------------------------------
@@ -336,23 +374,24 @@ function bestImageUrl(img: HTMLElement): string | undefined {
   return img.getAttribute("src") ?? undefined;
 }
 
-const downloads = new Map<string, string>(); // remote url -> absolute local path
+// absolute local path -> remote url (keyed by destination: one image can appear in several posts)
+const downloads = new Map<string, string>();
 
 /** Queue a remote file for download and return its public URL. */
 function localise(remote: string, folder: string): string {
   const url = new URL(remote, ORIGIN);
   const file = decodeURIComponent(path.basename(url.pathname)).replace(/[^\w.\-]+/g, "-");
   const rel = `media/${folder}/${file}`;
-  downloads.set(url.href, path.join(ROOT, "public", rel));
+  downloads.set(path.join(ROOT, "public", rel), url.href);
   return `/${rel}`;
 }
 
 async function runDownloads() {
-  const queue = [...downloads].filter(([, dest]) => !existsSync(dest));
+  const queue = [...downloads].filter(([dest]) => !existsSync(dest));
   let failed = 0;
   const worker = async () => {
     for (let item = queue.shift(); item; item = queue.shift()) {
-      const [url, dest] = item;
+      const [dest, url] = item;
       try {
         const res = await fetch(url, { headers: { "User-Agent": "Mozilla/5.0" } });
         if (!res.ok) throw new Error(String(res.status));
@@ -521,6 +560,8 @@ type Person = {
   classYear?: string;
   photo?: string;
   url?: string;
+  email?: string;
+  hideFromContact?: boolean;
   bio?: string;
   order: number;
 };
@@ -545,7 +586,8 @@ function parseFaculty(html: string): Person[] {
   const people: Person[] = [];
   let group: Person["group"] = "faculty";
   for (const block of root.childNodes as HTMLElement[]) {
-    const text = block.text?.trim() ?? "";
+    // normalise non-breaking spaces so the name is found where it first appears
+    const text = (block.text ?? "").replace(/\s+/g, " ").trim();
     if (/^network members/i.test(text)) {
       group = "network";
       continue;
@@ -558,7 +600,8 @@ function parseFaculty(html: string): Person[] {
     const img = block.querySelector("img");
     const nameLink = strong.querySelectorAll("a").find((a) => a.text.trim().length > 1);
     const after = text.slice(text.indexOf(name) + name.length);
-    const roleMatch = after.match(/^\s*\(([^)]+)\)/);
+    // allow one level of nested parentheses, e.g. "(Associate Director, QAC (QAC), Wesleyan)"
+    const roleMatch = after.match(/^\s*\(((?:[^()]|\([^()]*\))+)\)/);
     const bio = (roleMatch ? after.slice(roleMatch[0].length) : after)
       .replace(/^[\s—–-]+/, "")
       .replace(/\s+/g, " ")
@@ -569,7 +612,7 @@ function parseFaculty(html: string): Person[] {
       slug,
       name,
       group,
-      ...(roleMatch ? splitRole(roleMatch[1]) : {}),
+      ...(roleMatch ? splitRole(roleMatch[1].replace(/\(\s*([^)]*?)\s*\)/g, "($1)")) : {}),
       photo: img ? localise(bestImageUrl(img)!, "people") : undefined,
       url: href && !href.includes("/files/") ? href : undefined,
       bio: bio || undefined,

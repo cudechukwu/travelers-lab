@@ -6,7 +6,7 @@ import hero from "@/assets/hero.jpg";
  * Rhumb lines radiating from two wind roses, as on a portolan chart.
  * Purely decorative, drawn in once on load.
  */
-function CompassLines() {
+function CompassLines({ className }: { className: string }) {
   const rose = (cx: number, cy: number, count: number, accentEvery: number, delay: number) =>
     Array.from({ length: count }, (_, i) => {
       const a = (i / count) * Math.PI * 2;
@@ -30,7 +30,7 @@ function CompassLines() {
 
   return (
     <svg
-      className="pointer-events-none absolute inset-0 -z-10 size-full text-on-dark"
+      className={`pointer-events-none absolute inset-0 -z-10 size-full ${className}`}
       viewBox="0 0 1600 1000"
       preserveAspectRatio="xMidYMid slice"
       aria-hidden
@@ -58,9 +58,34 @@ const LINES = [
   { text: "premodern world.", indent: "pl-[1.5em]", serif: true },
 ];
 
+/** "light" = paper background with an inverted photo; "dark" = the original night look. */
+const TONE: "light" | "dark" = "light";
+
+const TONES = {
+  dark: {
+    section: "bg-band text-on-dark",
+    image: "",
+    wash: "bg-[linear-gradient(90deg,rgb(0_0_0/0.72)_0%,rgb(0_0_0/0.35)_45%,rgb(0_0_0/0.05)_75%),linear-gradient(0deg,rgb(0_0_0/0.55)_0%,transparent_40%)]",
+    lines: "text-on-dark",
+    muted: "text-on-dark/70",
+    body: "text-on-dark/90",
+    primary: "bg-on-dark text-band hover:bg-rubric hover:text-on-dark",
+  },
+  light: {
+    section: "bg-paper text-ink",
+    // the photo as a negative: shadows turn to paper, map lines to ink
+    image: "invert grayscale contrast-[0.85] brightness-[1.08] mix-blend-multiply opacity-80",
+    wash: "bg-[linear-gradient(90deg,var(--paper)_0%,rgb(247_247_245/0.8)_40%,rgb(247_247_245/0.1)_75%),linear-gradient(0deg,rgb(247_247_245/0.85)_0%,transparent_45%)]",
+    lines: "text-ink",
+    muted: "text-ink-3",
+    body: "text-ink-2",
+    primary: "bg-ink text-paper hover:bg-rubric",
+  },
+}[TONE];
+
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#0d0d0c] text-on-dark">
+    <section className={`relative isolate overflow-hidden ${TONES.section}`}>
       <Image
         src={hero}
         alt=""
@@ -68,21 +93,21 @@ export function Hero() {
         priority
         placeholder="blur"
         sizes="100vw"
-        className="-z-20 object-cover object-[68%_50%]"
+        className={`-z-20 object-cover object-[68%_50%] ${TONES.image}`}
       />
       <div
-        className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(0_0_0/0.72)_0%,rgb(0_0_0/0.35)_45%,rgb(0_0_0/0.05)_75%),linear-gradient(0deg,rgb(0_0_0/0.55)_0%,transparent_40%)]"
+        className={`absolute inset-0 -z-10 ${TONES.wash}`}
         aria-hidden
       />
-      <CompassLines />
+      <CompassLines className={TONES.lines} />
 
       <div className="gutter flex min-h-[clamp(36rem,calc(100svh-var(--header-h)),58rem)] flex-col justify-between gap-12 py-8 lg:py-12">
-        <div className="label flex justify-between gap-4 text-on-dark/70">
+        <div className={`label flex justify-between gap-4 ${TONES.muted}`}>
           <span>Wesleyan University · Digital Humanities Research</span>
           <span className="hidden sm:inline">41.55°N 72.66°W</span>
         </div>
 
-        <h1 className="display text-[clamp(2.4rem,8.4vw,6rem)] leading-[0.95] tracking-[-0.04em] lg:text-[clamp(3rem,5.6vw,6rem)]">
+        <h1 className="display text-[clamp(2.1rem,7.4vw,4.2rem)] leading-[0.97] tracking-[-0.035em] lg:text-[clamp(2.25rem,4vw,4.2rem)]">
           {LINES.map((line, i) => (
             <span
               key={line.text}
@@ -95,16 +120,16 @@ export function Hero() {
         </h1>
 
         <div className="grid gap-8 md:grid-cols-12 md:items-end">
-          <p className="label text-on-dark/70 md:col-span-5">Fig. 1 — The lab studies edicts, coins, seals, letters &amp; receipts</p>
+          <p className={`label md:col-span-5 ${TONES.muted}`}>Fig. 1 — The lab studies edicts, coins, seals, letters &amp; receipts</p>
           <div className="md:col-span-5 md:col-start-8">
-            <p className="text-[1.05rem] leading-relaxed text-on-dark/90 sm:text-lg">
+            <p className={`text-[1.05rem] leading-relaxed sm:text-lg ${TONES.body}`}>
               The Traveler’s Lab is a Wesleyan-based international research network studying the movement of
               knowledge, messages, people and material objects before industrial travel.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-[0.95rem]">
               <Link
                 href="/research"
-                className="inline-flex items-center gap-3 bg-on-dark px-5 py-3 text-[#161513] transition-colors hover:bg-rubric hover:text-on-dark"
+                className={`inline-flex items-center gap-3 px-5 py-3 transition-colors ${TONES.primary}`}
               >
                 Explore our research <span aria-hidden>→</span>
               </Link>

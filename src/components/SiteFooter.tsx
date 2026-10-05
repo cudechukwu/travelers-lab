@@ -47,10 +47,16 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="gutter overflow-hidden" aria-hidden>
-        <p className="display flex items-end gap-[0.12em] whitespace-nowrap text-[clamp(3.5rem,13.5vw,12.5rem)] leading-[0.8] tracking-[-0.055em]">
+      <div className="gutter grid gap-6 border-t border-rule py-10 lg:grid-cols-12">
+        <p className="label flex items-center gap-2 text-ink-3 lg:col-span-3">
+          <WindRose className="size-3.5 text-rubric" /> Colophon
+        </p>
+        <p className="max-w-2xl font-serif text-[1.02rem] leading-relaxed text-ink-2 lg:col-span-9">
+          Set in EB Garamond and Inter Tight. Headings are marked in red, as medieval scribes rubricated theirs, and
+          the compass lines follow the rhumb lines of portolan sea charts. The wind rose is adapted from the one on
+          Jorge de Aguiar’s portolan chart of 1492, the lab’s emblem on its earlier site. Built by students of the
           Travelers’ Lab
-          <WindRose className="mb-[0.06em] size-[0.42em] shrink-0 text-rubric" />
+          at Wesleyan University, <span className="oldstyle">{new Date().getFullYear()}</span>.
         </p>
       </div>
 

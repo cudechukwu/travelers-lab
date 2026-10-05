@@ -2,15 +2,13 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { formatDate, type Post, type Project } from "@/lib/content";
 
-/** Numbered section heading: "02 — Research" label, big title, optional link on the right. */
+/** Section heading: "¶ Research" label, big title, optional link on the right. */
 export function SectionHead({
-  index,
   label,
   title,
   link,
   dark = false,
 }: {
-  index: string;
   label: string;
   title: ReactNode;
   link?: { href: string; label: string };
@@ -19,9 +17,13 @@ export function SectionHead({
   return (
     <div className="grid gap-6 pb-10 lg:grid-cols-12 lg:pb-14">
       <p className={`label lg:col-span-3 lg:pt-3 ${dark ? "text-on-dark/60" : "text-ink-3"}`}>
-        {index} — {label}
+        <span className={dark ? "" : "text-rubric"}>¶</span> {label}
       </p>
-      <h2 className="display text-[clamp(2.25rem,5vw,4.25rem)] leading-[0.98] lg:col-span-7">{title}</h2>
+      <h2
+        className="display text-[clamp(1.75rem,3.2vw,2.9rem)] leading-[1.05] lg:col-span-7"
+      >
+        {title}
+      </h2>
       {link && (
         <div className="lg:col-span-2 lg:flex lg:items-end lg:justify-end">
           <Link href={link.href} className="link-arrow text-[0.95rem]">
@@ -53,7 +55,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         <StatusTag status={project.status} />
       </div>
       <div>
-        <h3 className="display text-[clamp(1.9rem,3.2vw,2.75rem)] leading-[1.02] transition-colors group-hover:text-rubric">
+        <h3 className="display text-[clamp(1.5rem,2.3vw,1.95rem)] leading-[1.05] transition-colors group-hover:text-rubric">
           {project.shortTitle || project.title}
         </h3>
         <p className="mt-4 max-w-md text-[1.02rem] leading-relaxed text-ink-2">{project.summary}</p>
@@ -88,7 +90,7 @@ export function PostRow({ post, projects }: { post: Post; projects: Project[] })
           {formatDate(post.date, "short")}
         </time>
         <div className="sm:col-span-9 lg:col-span-7">
-          <h3 className="display text-[1.4rem] leading-tight tracking-[-0.02em] transition-colors group-hover:text-rubric lg:text-[1.75rem]">
+          <h3 className="display text-[1.25rem] leading-tight tracking-[-0.02em] transition-colors group-hover:text-rubric lg:text-[1.4rem]">
             {post.title}
           </h3>
           {post.authors.length > 0 && <p className="mt-2 text-[0.92rem] text-ink-3">{post.authors.join(", ")}</p>}
@@ -119,7 +121,7 @@ export function PageHead({
   return (
     <header className="gutter border-b border-rule pb-12 pt-14 lg:pb-16 lg:pt-24">
       <div className="label text-ink-3">{eyebrow}</div>
-      <h1 className="display mt-6 max-w-[18ch] text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.95] tracking-[-0.045em]">
+      <h1 className="display mt-6 max-w-[18ch] text-[clamp(2.25rem,4.9vw,4.5rem)] leading-[0.98] tracking-[-0.045em]">
         {title}
       </h1>
       {intro && <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-2 lg:text-xl">{intro}</p>}

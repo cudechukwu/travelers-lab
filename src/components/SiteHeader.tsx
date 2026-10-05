@@ -34,7 +34,7 @@ export function SiteHeader() {
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="flex shrink-0 items-center gap-2.5 pl-4 pr-6 sm:pl-6 lg:pl-10"
+          className="flex shrink-0 items-center gap-2.5 pl-5 pr-6 sm:pl-8 lg:pl-14 xl:pl-20"
         >
           <WindRose className="size-5 text-rubric" />
           <span className="display text-[1.05rem] tracking-[-0.02em]">Travelers’ Lab</span>
@@ -101,7 +101,7 @@ export function SiteHeader() {
                     aria-current={isActive(item.href) ? "page" : undefined}
                     className="flex items-baseline justify-between py-4 aria-[current=page]:text-rubric"
                   >
-                    <span className="display text-4xl">{item.label}</span>
+                    <span className="display text-3xl">{item.label}</span>
                     <span className="label text-ink-3">{String(i + 1).padStart(2, "0")}</span>
                   </Link>
                 </li>

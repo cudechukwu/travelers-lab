@@ -21,6 +21,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      // The site uses the light palette everywhere; remove this to follow the visitor’s dark-mode setting
+      data-theme="light"
       className={`${interTight.variable} ${garamond.variable} ${plexMono.variable} antialiased`}
       suppressHydrationWarning
     >

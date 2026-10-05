@@ -45,7 +45,7 @@ export function NetworkMap({ institutions }: { institutions: string[] }) {
             return <line key={lat} x1={0} x2={W} y1={y} y2={y} />;
           })}
         </g>
-        <g className="hidden font-mono md:block" fill="currentColor" fillOpacity={0.4} fontSize={10} letterSpacing={1}>
+        <g className="oldstyle hidden font-serif md:block" fill="currentColor" fillOpacity={0.45} fontSize={13}>
           {[35, 40, 45, 50, 55].map((lat) => (
             <text key={lat} x={W - 6} y={project(lat, 0).y - 5} textAnchor="end">
               {lat}°N
@@ -114,9 +114,10 @@ export function NetworkMap({ institutions }: { institutions: string[] }) {
                 x={lx}
                 y={ly}
                 textAnchor={s.anchor ?? "start"}
-                className="hidden font-mono uppercase md:block"
-                fontSize={11}
-                letterSpacing={1.2}
+                className="hidden font-serif md:block"
+                style={{ fontVariantCaps: "all-small-caps" }}
+                fontSize={15}
+                letterSpacing={0.8}
                 fill="currentColor"
                 fillOpacity={isHub ? 1 : 0.8}
               >

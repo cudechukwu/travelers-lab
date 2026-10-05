@@ -95,6 +95,11 @@ export default config({
         summary: fields.text({ label: "One-line summary", multiline: true }),
         period: fields.text({ label: "Historical period", description: "e.g. “ca. 250–1453”" }),
         region: fields.text({ label: "Region", description: "e.g. “Constantinople”" }),
+        startYear: fields.integer({
+          label: "Timeline start (year CE)",
+          description: "Approximate first year the project covers, for the research timeline.",
+        }),
+        endYear: fields.integer({ label: "Timeline end (year CE)" }),
         leads: fields.array(fields.text({ label: "Name" }), {
           label: "Project leads",
           itemLabel: (props) => props.value || "Lead",
@@ -158,6 +163,12 @@ export default config({
           label: "Photo",
           directory: "public/media/people",
           publicPath: "/media/people/",
+        }),
+        email: fields.text({ label: "Email", description: "Shown on People and Get involved. Faculty only." }),
+        hideFromContact: fields.checkbox({
+          label: "Hide from “Contact a faculty member”",
+          description: "Faculty only. They still appear on the People page.",
+          defaultValue: false,
         }),
         url: fields.url({ label: "Profile link" }),
         bio: fields.text({ label: "Bio", multiline: true }),

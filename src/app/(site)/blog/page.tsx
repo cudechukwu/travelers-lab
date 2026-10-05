@@ -60,7 +60,7 @@ export default async function BlogPage(props: PageProps<"/blog">) {
       <div className="gutter py-12 lg:py-20">
         {[...byYear].map(([year, items]) => (
           <section key={year} className="grid gap-4 pb-12 lg:grid-cols-12 lg:gap-6 lg:pb-16">
-            <h2 className="display text-[clamp(2rem,4vw,3.5rem)] leading-none text-ink-3 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:col-span-2 lg:self-start">
+            <h2 className="display text-[clamp(1.6rem,2.8vw,2.45rem)] leading-none text-ink-3 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:col-span-2 lg:self-start">
               {year}
             </h2>
             <ul className="border-b border-rule lg:col-span-10">
