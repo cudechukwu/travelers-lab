@@ -71,7 +71,7 @@ export default async function GetInvolvedPage() {
         title="Get involved"
         flip
         meta="Students and scholars"
-        statement="We welcome *connections and comments.* Write to one of the faculty below about *collaboration or joining the lab.*"
+        statement="We welcome connections and comments. *Write to one of the faculty below about collaboration or joining the lab.*"
       />
 
       <section className="bg-band text-on-dark">

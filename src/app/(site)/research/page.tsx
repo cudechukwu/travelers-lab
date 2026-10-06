@@ -21,7 +21,7 @@ export default async function ResearchPage() {
       <PageHead
         title="Research"
         meta={`${projects.length} projects · ${active.length} active`}
-        statement="Each project draws on *a different body of evidence* from a different culture, with datasets built in the open to be *published alongside the research.*"
+        statement="*Each project draws on* a different body of evidence from a different culture, with *datasets built in the open to be published alongside the research.*"
       />
 
       <section className="gutter py-16 lg:py-24">
