@@ -61,8 +61,7 @@ export default async function ResearchPage() {
                   className="group grid gap-1 px-4 py-5 transition-colors hover:bg-on-dark/10 sm:px-6 md:grid-cols-12 md:gap-6"
                 >
                   <span className="md:col-span-5">
-                    {/* lighter red: the standard rubric is too dark to read on this background */}
-                    <span className="display text-xl tracking-[-0.02em] group-hover:text-[#e46a4f]">
+                    <span className="display text-xl tracking-[-0.02em]">
                       {p.title}
                     </span>
                     <span className="mt-1 block text-[0.92rem] text-on-dark/60 md:pr-6">

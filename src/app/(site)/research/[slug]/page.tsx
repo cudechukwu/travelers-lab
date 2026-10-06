@@ -10,17 +10,29 @@ export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata(props: PageProps<"/research/[slug]">): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<"/research/[slug]">,
+): Promise<Metadata> {
   const { slug } = await props.params;
   const project = await getProject(slug);
   return project
-    ? { title: project.shortTitle || project.title, description: project.summary, alternates: { canonical: `/research/${slug}` } }
+    ? {
+        title: project.shortTitle || project.title,
+        description: project.summary,
+        alternates: { canonical: `/research/${slug}` },
+      }
     : {};
 }
 
-export default async function ProjectPage(props: PageProps<"/research/[slug]">) {
+export default async function ProjectPage(
+  props: PageProps<"/research/[slug]">,
+) {
   const { slug } = await props.params;
-  const [project, projects, posts] = await Promise.all([getProject(slug), getProjects(), getPosts()]);
+  const [project, projects, posts] = await Promise.all([
+    getProject(slug),
+    getProjects(),
+    getPosts(),
+  ]);
   if (!project) notFound();
 
   const { node } = await project.content();
@@ -28,7 +40,10 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
   const facts = [
     { label: "Period", value: project.period },
     { label: "Region", value: project.region },
-    { label: project.leads.length > 1 ? "Leads" : "Lead", value: project.leads.join(", ") },
+    {
+      label: project.leads.length > 1 ? "Leads" : "Lead",
+      value: project.leads.join(", "),
+    },
     { label: "Methods", value: project.methods.join(", ") },
   ].filter((f) => f.value);
 
@@ -37,36 +52,43 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
 
   return (
     <article>
-      <header className="gutter pb-12 pt-14 lg:pb-16 lg:pt-24">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <nav aria-label="Breadcrumb" className="label text-ink-3">
-            <Link href="/research" className="hover:text-rubric">
-              Research
-            </Link>
-            <span className="px-2">/</span>
-            <span className="text-ink-2">{project.shortTitle}</span>
-          </nav>
-          <StatusTag status={project.status} />
-        </div>
-        <h1 className="display mt-8 max-w-[20ch] text-[clamp(2rem,4.2vw,4rem)] leading-[1] tracking-[-0.045em]">
-          {project.title}
-        </h1>
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-2 lg:text-xl">{project.summary}</p>
-      </header>
+      {/* The title and facts sit on the project's status colour: red while active, the archive list's black once archived. The reading below stays light. */}
+      <div
+        className={`${project.status === "archived" ? "archive-tone" : "active-tone"} bg-paper text-ink`}
+      >
+        <header className="gutter pb-12 pt-14 lg:pb-16 lg:pt-24">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <nav aria-label="Breadcrumb" className="label text-ink-3">
+              <Link href="/research" className="hover:text-rubric">
+                Research
+              </Link>
+              <span className="px-2">/</span>
+              <span className="text-ink-2">{project.shortTitle}</span>
+            </nav>
+            <StatusTag status={project.status} />
+          </div>
+          <h1 className="display mt-8 max-w-[20ch] text-[clamp(2rem,4.2vw,4rem)] leading-[1] tracking-[-0.045em]">
+            {project.title}
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-2 lg:text-xl">
+            {project.summary}
+          </p>
+        </header>
 
-      <dl className="border-y border-rule">
-        <div className="gutter grid grid-cols-2 lg:grid-cols-4">
-          {facts.map((f, i) => (
-            <div
-              key={f.label}
-              className={`py-6 ${i % 2 ? "border-l border-rule pl-5" : "pr-5"} ${i < facts.length - 2 ? "border-b border-rule lg:border-b-0" : ""} lg:px-0 ${i > 0 ? "lg:border-l lg:border-rule lg:pl-6" : ""}`}
-            >
-              <dt className="label text-ink-3">{f.label}</dt>
-              <dd className="mt-2.5 text-[0.98rem]">{f.value}</dd>
-            </div>
-          ))}
-        </div>
-      </dl>
+        <dl className="border-y border-rule">
+          <div className="gutter grid grid-cols-2 lg:grid-cols-4">
+            {facts.map((f, i) => (
+              <div
+                key={f.label}
+                className={`py-6 ${i % 2 ? "border-l border-rule pl-5" : "pr-5"} ${i < facts.length - 2 ? "border-b border-rule lg:border-b-0" : ""} lg:px-0 ${i > 0 ? "lg:border-l lg:border-rule lg:pl-6" : ""}`}
+              >
+                <dt className="label text-ink-3">{f.label}</dt>
+                <dd className="mt-2.5 text-[0.98rem]">{f.value}</dd>
+              </div>
+            ))}
+          </div>
+        </dl>
+      </div>
 
       <div className="gutter grid gap-12 py-14 lg:grid-cols-12 lg:py-20">
         <aside className="order-2 space-y-10 lg:order-1 lg:col-span-3">
@@ -97,8 +119,8 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
             )}
             {related.length > 0 && (
               <a href="#blog-posts" className="link-arrow text-[0.95rem]">
-                {related.length} blog {related.length === 1 ? "post" : "posts"} on this project{" "}
-                <span aria-hidden>↓</span>
+                {related.length} blog {related.length === 1 ? "post" : "posts"}{" "}
+                on this project <span aria-hidden>↓</span>
               </a>
             )}
           </div>
@@ -110,7 +132,9 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
 
       {related.length > 0 && (
         <section id="blog-posts" className="gutter scroll-mt-20 pb-20">
-          <h2 className="display mb-8 text-[clamp(1.5rem,2.5vw,1.95rem)] leading-none">Blog posts on this project</h2>
+          <h2 className="display mb-8 text-[clamp(1.5rem,2.5vw,1.95rem)] leading-none">
+            Blog posts on this project
+          </h2>
           <ul className="border-b border-rule">
             {related.map((post) => (
               <PostRow key={post.slug} post={post} projects={projects} />
@@ -130,7 +154,10 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
               {next.shortTitle}
             </span>
           </span>
-          <span className="text-3xl transition-transform group-hover:translate-x-1" aria-hidden>
+          <span
+            className="text-3xl transition-transform group-hover:translate-x-1"
+            aria-hidden
+          >
             →
           </span>
         </div>

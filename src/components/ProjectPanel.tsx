@@ -98,7 +98,12 @@ export async function ProjectPanel({ project: p }: { project: Project }) {
 
       <Link
         href={`/research/${p.slug}`}
-        className="sticky bottom-0 flex items-center justify-between gap-4 bg-ink px-5 py-5 text-paper transition-colors hover:bg-rubric sm:px-8"
+        // Hover previews the colour the project page opens in: black for archived, red for active
+        className={`sticky bottom-0 flex items-center justify-between gap-4 px-5 py-5 text-white transition-colors sm:px-8 ${
+          p.status === "archived"
+            ? "bg-rubric hover:bg-black"
+            : "bg-black hover:bg-rubric"
+        }`}
       >
         Read the full project <span aria-hidden>→</span>
       </Link>

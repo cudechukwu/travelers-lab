@@ -46,7 +46,7 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
+        className={`site-header sticky top-0 z-50 border-b text-ink transition-colors duration-300 ${
           transparent
             ? "border-transparent bg-transparent"
             : "border-rule bg-paper/95 backdrop-blur-sm"
@@ -122,7 +122,7 @@ export function SiteHeader() {
       {open && (
         <div
           id="mobile-menu"
-          className="fixed inset-x-0 bottom-0 top-(--header-h) z-40 flex flex-col overflow-y-auto bg-paper lg:hidden"
+          className="site-header fixed text-ink inset-x-0 bottom-0 top-(--header-h) z-40 flex flex-col overflow-y-auto bg-paper lg:hidden"
         >
           <nav aria-label="Mobile" className="gutter flex-1 py-6">
             <ul className="divide-y divide-rule border-y border-rule">

@@ -507,3 +507,33 @@ html:has(.search-panel[open]) {
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   Project pages: the title and facts sit on the project's status
+   colour, with every token re-pointed so colours follow on their own.
+   Archived: the archive list's black.
+------------------------------------------------------------------- */
+.archive-tone {
+  --paper: #000000;
+  --paper-2: #151515;
+  --ink: #ffffff;
+  --ink-2: #cfcfcf;
+  --ink-3: #9a9a9a;
+  --rule: rgb(255 255 255 / 0.16);
+  /* lighter red: the standard rubric is too dark to read on black */
+  --rubric: #e46a4f;
+  color-scheme: dark;
+}
+
+/* Active project pages: the same treatment in rubric red, as on the homepage's "Get involved" band */
+.active-tone {
+  --paper: #b0341e;
+  --paper-2: #9c2d19;
+  --ink: #ffffff;
+  --ink-2: #fbe9e5;
+  --ink-3: #f2c4ba;
+  --rule: rgb(255 255 255 / 0.24);
+  /* the "Active" dot and hover colour turn white, since red on red would vanish */
+  --rubric: #ffffff;
+  color-scheme: dark;
+}
