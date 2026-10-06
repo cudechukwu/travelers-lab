@@ -39,18 +39,18 @@ export default async function ResearchPage() {
             <h2 className="display text-[clamp(1.6rem,2.8vw,2.3rem)] leading-none">The archive</h2>
             <p className="label text-on-dark/60">{archived.length} projects</p>
           </div>
-          <ul className="border-b border-on-dark/15">
-            <li className="label hidden border-t border-on-dark/15 py-3 text-on-dark/60 md:grid md:grid-cols-12 md:gap-6">
+          <ul>
+            <li className="label hidden border-b border-on-dark/15 px-4 py-3 text-on-dark/60 sm:px-6 md:grid md:grid-cols-12 md:gap-6">
               <span className="md:col-span-5">Project</span>
               <span className="md:col-span-2">Period</span>
               <span className="md:col-span-2">Region</span>
               <span className="md:col-span-3">Lead</span>
             </li>
             {archived.map((p) => (
-              <li key={p.slug} className="border-t border-on-dark/15">
+              <li key={p.slug} className="odd:bg-on-dark/[0.06]">
                 <Link
                   href={`/research/${p.slug}`}
-                  className="group grid gap-1 py-5 transition-colors hover:bg-on-dark/5 md:grid-cols-12 md:gap-6"
+                  className="group grid gap-1 px-4 py-5 transition-colors hover:bg-on-dark/10 sm:px-6 md:grid-cols-12 md:gap-6"
                 >
                   <span className="md:col-span-5">
                     {/* lighter red: the standard rubric is too dark to read on this background */}
