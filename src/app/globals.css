@@ -511,17 +511,18 @@ html:has(.search-panel[open]) {
 /* ------------------------------------------------------------------
    Project pages: the title and facts sit on the project's status
    colour, with every token re-pointed so colours follow on their own.
-   Archived: the archive list's black.
+   Archived: dark grey.
 ------------------------------------------------------------------- */
 .archive-tone {
-  --paper: #000000;
-  --paper-2: #151515;
+  /* dark grey: the colour of an archived bar on the timeline when hovered */
+  --paper: #666666;
+  --paper-2: #5a5a5a;
   --ink: #ffffff;
-  --ink-2: #cfcfcf;
-  --ink-3: #9a9a9a;
-  --rule: rgb(255 255 255 / 0.16);
-  /* lighter red: the standard rubric is too dark to read on black */
-  --rubric: #e46a4f;
+  --ink-2: #f2f2f2;
+  --ink-3: #e2e2e2;
+  --rule: rgb(255 255 255 / 0.25);
+  /* red is too dark to read on grey, so hover colours turn white */
+  --rubric: #ffffff;
   color-scheme: dark;
 }
 

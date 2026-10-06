@@ -95,6 +95,10 @@ About, Teaching (built from `courses`, `digital-history`, `acceleration-of-europ
 
 Page headers (`PageHead` in `blocks.tsx`): the page name sits small on one side with a fact or two (`meta`), the opening line large on the other. `flip` swaps sides (Blog, Get involved); `hideTitle` keeps the name for screen readers only (Blog). People has no header and starts with the faculty.
 
+### Project page colours
+
+The title area of each project page wears its status, matching the timeline: red for active, dark grey for archived (`.active-tone` / `.archive-tone` in `globals.css`). The reading area below stays light. Changing a project's `status` switches it automatically.
+
 ### Homepage project panel
 
 Clicking a project in the homepage timeline or "Active now" list opens a side panel (`?project=<slug>`) instead of leaving the page; the full project page is one click away. The panel shows the first image in the write-up, cropped and greyscale; set `panelImage: whole` on a project to show it uncropped instead (book covers, charts).
