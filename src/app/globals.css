@@ -344,3 +344,114 @@ html:has(.project-panel[open]) {
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   Publication drawings: slow loops that suggest movement.
+------------------------------------------------------------------- */
+.glyph * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+/* a meridian widening from the centre line to the rim, fading as it goes */
+@keyframes glyph-widen {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+.glyph-widen {
+  animation: glyph-widen 10s linear infinite;
+}
+@keyframes glyph-flow {
+  to {
+    stroke-dashoffset: -7;
+  }
+}
+.glyph-flow {
+  animation: glyph-flow 2.4s linear infinite;
+}
+@keyframes glyph-drift {
+  50% {
+    transform: translate(-2.5px, -2.5px);
+  }
+}
+.glyph-drift {
+  animation: glyph-drift 3s ease-in-out infinite;
+}
+@keyframes glyph-blink {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  20%,
+  45% {
+    opacity: 1;
+  }
+}
+.glyph-blink {
+  animation: glyph-blink 7s ease-in-out infinite;
+}
+/*
+ * Keeps the drawing's original proportions while each ring grows: small
+ * rings are tall and narrow (height 1.6 × width), wider ones level off at a
+ * fixed height. Linear timing so the rings stay evenly spaced.
+ */
+@keyframes glyph-open {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  25% {
+    transform: scale(0.25, 0.55);
+  }
+  43% {
+    transform: scale(0.43, 0.94);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1, 0.94);
+    opacity: 0;
+  }
+}
+/* each ring grows from the point where the two sides meet */
+.glyph .glyph-open-left {
+  transform-origin: right center;
+  animation: glyph-open 6s linear infinite;
+}
+.glyph .glyph-open-right {
+  transform-origin: left center;
+  animation: glyph-open 6s linear infinite;
+}
+@keyframes glyph-ping {
+  from {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.glyph-ping {
+  animation: glyph-ping 2.4s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .glyph * {
+    animation: none !important;
+  }
+}

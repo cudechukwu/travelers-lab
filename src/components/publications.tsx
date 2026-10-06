@@ -14,17 +14,34 @@ const ring = (cx: number, cy: number, rx: number, ry = rx) => (
   <ellipse key={`${rx}-${ry}`} cx={cx} cy={cy} rx={rx} ry={ry} />
 );
 
+/** Negative delays start every loop mid-cycle, so nothing sits still on load. */
+const offset = (i: number, n: number, seconds: number) => ({
+  animationDelay: `${(-i / n) * seconds}s`,
+});
+
 /**
- * Hairline drawings, one per entry in turn so neighbours never repeat:
- * a globe, a radiating network, stacked leaves of a palimpsest, a map grid,
- * paired orbits and a route between waypoints.
+ * Hairline drawings, one per entry in turn so neighbours never repeat, each
+ * with a slow loop: a globe whose meridians open outward, a network pulsing outward, drifting
+ * leaves of a palimpsest, a map grid with data points lighting up, paired
+ * orbits opening outward and a route being travelled.
  */
 const GLYPHS = [
   () => (
     <>
       {ring(50, 50, 46)}
-      {[8, 20, 32, 42].map((rx) => ring(50, 50, rx, 46))}
       <line x1="50" y1="4" x2="50" y2="96" />
+      {/* meridians open out from the centre line and fade at the rim */}
+      {Array.from({ length: 4 }, (_, i) => (
+        <ellipse
+          key={i}
+          cx="50"
+          cy="50"
+          rx="46"
+          ry="46"
+          className="glyph-widen"
+          style={offset(i, 4, 10)}
+        />
+      ))}
       {[22, 50, 78].map((y) => {
         const half = Math.sqrt(46 ** 2 - (y - 50) ** 2);
         return <line key={y} x1={50 - half} y1={y} x2={50 + half} y2={y} />;
@@ -44,6 +61,7 @@ const GLYPHS = [
             x2={50 + 42 * Math.cos(a)}
             y2={50 + 42 * Math.sin(a)}
             strokeDasharray="1.5 2"
+            className="glyph-flow"
           />
         );
       })}
@@ -52,54 +70,74 @@ const GLYPHS = [
   ),
   () =>
     Array.from({ length: 5 }, (_, i) => (
-      <rect key={i} x={14 + i * 4} y={8 + i * 4} width="52" height="66" />
+      <rect
+        key={i}
+        x={14 + i * 4}
+        y={8 + i * 4}
+        width="52"
+        height="66"
+        className="glyph-drift"
+        style={{ animationDelay: `${-i * 0.6}s` }}
+      />
     )),
-  () => (
-    <>
-      <rect x="6" y="6" width="88" height="88" strokeDasharray="1 1.5" />
-      {[28, 50, 72].map((v) => (
-        <g key={v}>
-          <line x1={v} y1="6" x2={v} y2="94" />
-          <line x1="6" y1={v} x2="94" y2={v} />
-        </g>
-      ))}
-      {[
-        [17, 39],
-        [61, 17],
-        [39, 61],
-        [83, 83],
-        [61, 61],
-      ].map(([x, y]) => (
-        <rect
-          key={`${x}-${y}`}
-          x={x - 3}
-          y={y - 3}
-          width="6"
-          height="6"
-          fill="currentColor"
-        />
-      ))}
-    </>
-  ),
+  () => {
+    const points = [
+      [17, 39],
+      [61, 17],
+      [39, 61],
+      [83, 83],
+      [61, 61],
+      [83, 39],
+      [17, 83],
+    ];
+    return (
+      <>
+        <rect x="6" y="6" width="88" height="88" strokeDasharray="1 1.5" />
+        {[28, 50, 72].map((v) => (
+          <g key={v}>
+            <line x1={v} y1="6" x2={v} y2="94" />
+            <line x1="6" y1={v} x2="94" y2={v} />
+          </g>
+        ))}
+        {points.map(([x, y], i) => (
+          <rect
+            key={`${x}-${y}`}
+            x={x - 3}
+            y={y - 3}
+            width="6"
+            height="6"
+            fill="currentColor"
+            className="glyph-blink"
+            style={offset(i * 3, points.length, 7)}
+          />
+        ))}
+      </>
+    );
+  },
   () => (
     <>
       <circle cx="50" cy="50" r="46" strokeDasharray="0.6 1.6" />
-      {[8, 14, 20, 26, 32, 38].flatMap((r) => [
-        <ellipse
-          key={`l${r}`}
-          cx={50 - r}
-          cy="50"
-          rx={r}
-          ry={Math.min(30, r * 1.6)}
-        />,
-        <ellipse
-          key={`r${r}`}
-          cx={50 + r}
-          cy="50"
-          rx={r}
-          ry={Math.min(30, r * 1.6)}
-        />,
-      ])}
+      {/* rings open out from the centre on either side and fade as they grow */}
+      {Array.from({ length: 6 }, (_, i) => (
+        <g key={i}>
+          <ellipse
+            cx="10"
+            cy="50"
+            rx="40"
+            ry="32"
+            className="glyph-open-left"
+            style={offset(i, 6, 6)}
+          />
+          <ellipse
+            cx="90"
+            cy="50"
+            rx="40"
+            ry="32"
+            className="glyph-open-right"
+            style={offset(i, 6, 6)}
+          />
+        </g>
+      ))}
     </>
   ),
   () => {
@@ -116,11 +154,12 @@ const GLYPHS = [
         <path
           d="M10,78 C18,60 22,50 30,52 S46,70 52,62 S62,34 70,30 S84,22 90,18"
           strokeDasharray="2 1.5"
+          className="glyph-flow"
         />
         {stops.map(([x, y]) => (
           <circle key={`${x}-${y}`} cx={x} cy={y} r="2.5" fill="currentColor" />
         ))}
-        {ring(90, 18, 6)}
+        <circle cx="90" cy="18" r="6" className="glyph-ping" />
       </>
     );
   },
@@ -131,7 +170,7 @@ function Glyph({ index }: { index: number }) {
   return (
     <svg
       viewBox="0 0 100 100"
-      className="size-full text-ink-3"
+      className="glyph size-full text-ink-3"
       fill="none"
       stroke="currentColor"
       strokeWidth="0.5"
@@ -156,7 +195,10 @@ export async function PublicationRow({
   );
 
   return (
-    <li className="grid gap-x-6 gap-y-8 border-t border-rule py-12 lg:grid-cols-12 lg:py-16">
+    <li
+      id={p.slug}
+      className="grid scroll-mt-20 gap-x-6 gap-y-8 border-t border-rule py-12 lg:grid-cols-12 lg:py-16"
+    >
       <div className="flex gap-5 lg:col-span-6 lg:gap-6">
         <span className="pt-2 font-mono text-[0.85rem] text-ink-3 lg:pt-3">
           {String(index + 1).padStart(2, "0")}
@@ -219,5 +261,54 @@ export async function PublicationRow({
         </ul>
       </div>
     </li>
+  );
+}
+
+/** Every publication as a dot on a strip of years; each dot jumps to its entry. */
+export function YearStrip({ publications }: { publications: Publication[] }) {
+  const years = publications
+    .map((p) => Number(p.date?.slice(0, 4)))
+    .filter(Boolean);
+  if (!years.length) return null;
+  const first = Math.min(...years);
+  const last = Math.max(...years);
+  const span = Array.from({ length: last - first + 1 }, (_, i) => first + i);
+  return (
+    <figure aria-label="Publications by year" className="mb-8">
+      <div className="flex border-b border-rule">
+        {span.map((y) => {
+          const items = publications.filter((p) =>
+            p.date?.startsWith(String(y)),
+          );
+          return (
+            <div
+              key={y}
+              className="flex flex-1 flex-col-reverse items-start gap-1.5 border-l border-rule px-3 pb-3 pt-6 first:border-l-0 first:pl-0"
+            >
+              {items.map((p) => (
+                <a
+                  key={p.slug}
+                  href={`#${p.slug}`}
+                  title={p.title}
+                  className="block size-3 bg-rubric transition-transform hover:scale-125"
+                >
+                  <span className="sr-only">{p.title}</span>
+                </a>
+              ))}
+            </div>
+          );
+        })}
+      </div>
+      <div className="flex">
+        {span.map((y) => (
+          <span
+            key={y}
+            className="label flex-1 px-3 pt-2.5 text-ink-3 first:pl-0"
+          >
+            {y}
+          </span>
+        ))}
+      </div>
+    </figure>
   );
 }
