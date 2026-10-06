@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageHead } from "@/components/blocks";
-import { kindLabels, PublicationRow } from "@/components/publications";
+import { IndexList, PageHead } from "@/components/blocks";
+import {
+  kindLabels,
+  PublicationRow,
+  YearStrip,
+} from "@/components/publications";
 import { getPage, getPublications } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -22,15 +26,24 @@ export default async function PublicationsPage() {
   return (
     <>
       <PageHead
-        eyebrow="Publications"
         title={page.title}
-        intro={page.intro || undefined}
-      >
-        <p className="label mt-10 text-ink-3">
-          {publications.length} works ·{" "}
-          {kinds.map((k) => kindLabels[k]).join(" · ")}
-        </p>
-      </PageHead>
+        flip
+        meta={`${publications.length} works`}
+        statement={page.intro || undefined}
+        aside={
+          <>
+            <YearStrip publications={publications} />
+            <IndexList
+              label="By type"
+              rows={kinds.map((k) => ({
+                label: kindLabels[k],
+                count: publications.filter((p) => p.kind === k).length,
+                href: `#${publications.find((p) => p.kind === k)!.slug}`,
+              }))}
+            />
+          </>
+        }
+      />
       <ol className="gutter pb-10 [&>li:first-child]:border-t-0">
         {publications.map((p, i) => (
           <PublicationRow key={p.slug} publication={p} index={i} />

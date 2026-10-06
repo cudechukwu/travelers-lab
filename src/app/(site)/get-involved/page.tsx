@@ -5,7 +5,8 @@ import { getPeople, type Person } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Get involved",
-  description: "How students and scholars can join the Travelers’ Lab, and which faculty to contact.",
+  description:
+    "How students and scholars can join the Travelers’ Lab, and which faculty to contact.",
   alternates: { canonical: "/get-involved" },
 };
 
@@ -40,7 +41,10 @@ function Portrait({ person }: { person: Person }) {
           className="object-cover object-top grayscale"
         />
       ) : (
-        <span className="display flex size-full items-center justify-center text-2xl text-ink-3" aria-hidden>
+        <span
+          className="display flex size-full items-center justify-center text-2xl text-ink-3"
+          aria-hidden
+        >
           {initials}
         </span>
       )}
@@ -49,14 +53,17 @@ function Portrait({ person }: { person: Person }) {
 }
 
 export default async function GetInvolvedPage() {
-  const faculty = (await getPeople()).filter((p) => p.group === "faculty" && !p.hideFromContact);
+  const faculty = (await getPeople()).filter(
+    (p) => p.group === "faculty" && !p.hideFromContact,
+  );
 
   return (
     <>
       <PageHead
-        eyebrow="Get involved"
-        title="Opportunities for students and scholars"
-        intro="We welcome connections and comments. Send general enquiries, or specific requests about collaboration and participation, directly to one of the faculty below."
+        title="Get involved"
+        flip
+        meta="Students and scholars"
+        statement="We welcome *connections and comments.* Write to one of the faculty below about *collaboration or joining the lab.*"
       />
 
       <section className="bg-band text-on-dark">
@@ -66,8 +73,12 @@ export default async function GetInvolvedPage() {
               <p className="label text-on-dark/70">
                 <span className="text-rubric">¶</span> {p.label}
               </p>
-              <h2 className="display mt-5 max-w-[16ch] text-[clamp(1.5rem,2.5vw,1.95rem)] leading-[1.05]">{p.title}</h2>
-              <p className="mt-5 max-w-lg leading-relaxed text-on-dark/90">{p.body}</p>
+              <h2 className="display mt-5 max-w-[16ch] text-[clamp(1.5rem,2.5vw,1.95rem)] leading-[1.05]">
+                {p.title}
+              </h2>
+              <p className="mt-5 max-w-lg leading-relaxed text-on-dark/90">
+                {p.body}
+              </p>
             </div>
           ))}
         </div>
@@ -82,9 +93,15 @@ export default async function GetInvolvedPage() {
             <li key={f.slug} className="flex items-start gap-6 sm:gap-8">
               <Portrait person={f} />
               <div className="min-w-0 pt-1">
-                <h3 className="display text-xl tracking-[-0.02em] lg:text-[1.4rem]">{f.name}</h3>
-                {f.role && <p className="mt-2 leading-snug text-ink-2">{f.role}</p>}
-                {f.institution && <p className="label mt-3 text-ink-3">{f.institution}</p>}
+                <h3 className="display text-xl tracking-[-0.02em] lg:text-[1.4rem]">
+                  {f.name}
+                </h3>
+                {f.role && (
+                  <p className="mt-2 leading-snug text-ink-2">{f.role}</p>
+                )}
+                {f.institution && (
+                  <p className="label mt-3 text-ink-3">{f.institution}</p>
+                )}
                 <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[0.95rem]">
                   {f.email && (
                     <a href={`mailto:${f.email}`} className="link-arrow">

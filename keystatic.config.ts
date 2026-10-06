@@ -174,7 +174,11 @@ export default config({
       entryLayout: "content",
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
-        intro: fields.text({ label: "Intro", description: "Short lead paragraph under the page title.", multiline: true }),
+        intro: fields.text({
+          label: "Opening line",
+          description: "One sentence shown large at the top of the page. Wrap key words in *asterisks* to print them dark; the rest stays grey.",
+          multiline: true,
+        }),
         legacyPath: fields.text({ label: "Old URL path" }),
         content: body("pages"),
       },

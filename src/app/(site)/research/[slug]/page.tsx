@@ -96,8 +96,8 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
               </div>
             )}
             {related.length > 0 && (
-              <a href="#lab-notes" className="link-arrow text-[0.95rem]">
-                {related.length} lab {related.length === 1 ? "note" : "notes"} on this project{" "}
+              <a href="#blog-posts" className="link-arrow text-[0.95rem]">
+                {related.length} blog {related.length === 1 ? "post" : "posts"} on this project{" "}
                 <span aria-hidden>↓</span>
               </a>
             )}
@@ -109,8 +109,8 @@ export default async function ProjectPage(props: PageProps<"/research/[slug]">) 
       </div>
 
       {related.length > 0 && (
-        <section id="lab-notes" className="gutter scroll-mt-20 pb-20">
-          <h2 className="display mb-8 text-[clamp(1.5rem,2.5vw,1.95rem)] leading-none">Lab notes on this project</h2>
+        <section id="blog-posts" className="gutter scroll-mt-20 pb-20">
+          <h2 className="display mb-8 text-[clamp(1.5rem,2.5vw,1.95rem)] leading-none">Blog posts on this project</h2>
           <ul className="border-b border-rule">
             {related.map((post) => (
               <PostRow key={post.slug} post={post} projects={projects} />

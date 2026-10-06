@@ -23,10 +23,11 @@ npx tsc --noEmit && npx eslint .
 
 ```
 content/
-  posts/*.mdoc        blog posts ("Lab notes")       → /blog/<slug>
+  posts/*.mdoc        blog posts                     → /blog/<slug>
   projects/*.mdoc     research projects              → /research/<slug>
+  publications/*.mdoc one file per publication       → /publications
   people/*.yaml       faculty, network, students     → /people
-  pages/*.mdoc        About, Publications, Teaching, Alumni text
+  pages/*.mdoc        page titles and opening lines; About, Teaching, Alumni text
   redirects.json      old WordPress URLs → new URLs (generated, see below)
 public/media/<collection>/<slug>/   images and files for each entry
 keystatic.config.ts   the content schema; the source of truth for every field
@@ -84,16 +85,26 @@ Opening paragraph…
 
 `content/people/<slug>.yaml`. `group` is `faculty`, `network`, `student` or `alumni`. `order` controls sort order (lower first; Jesse W. Torgerson is `0`). Students with a `classYear` move to Alumni automatically once their class has graduated (June of that year), so don't move them by hand. Photos go in `public/media/people/`. Only add an `email` someone has asked to be public. `hideFromContact: true` keeps a faculty member off the “Contact a faculty member” list on Get involved (they stay on People).
 
+### Publications
+
+`content/publications/<slug>.mdoc`. Fields: `title`, `authors` (in publication order), `date`, `kind` (`article`, `chapter`, `book`, `digital` or `data`), `venue` ("Published in"), `url`, `doi` (identifier only, e.g. `10.1111/hith.12276`). The body is the abstract. Sorted newest first; the year strip and type counts at the top of the page are built from these fields.
+
 ### Pages
 
-About, Publications, Teaching (built from `courses`, `digital-history`, `acceleration-of-europe`) and the earlier-alumni text are in `content/pages/`. Edit the `.mdoc` body.
+About, Teaching (built from `courses`, `digital-history`, `acceleration-of-europe`) and the earlier-alumni text are in `content/pages/`. Edit the `.mdoc` body. A page's `intro` is the large opening line at the top: wrap key words in `*asterisks*` to print them dark (the rest is grey). Keep the dark words to one or two short phrases.
+
+Page headers (`PageHead` in `blocks.tsx`): the page name sits small on one side with a fact or two (`meta`), the opening line large on the other. `flip` swaps sides (Blog, Get involved, Publications); `hideTitle` keeps the name for screen readers only (Blog). People has no header and starts with the faculty.
+
+### Homepage project panel
+
+Clicking a project in the homepage timeline or "Active now" list opens a side panel (`?project=<slug>`) instead of leaving the page; the full project page is one click away. The panel shows the first image in the write-up, cropped and greyscale; set `panelImage: whole` on a project to show it uncropped instead (book covers, charts).
 
 ## Design rules (keep the site consistent)
 
 The look is deliberately “manuscript and map” rather than a tech template. When adding UI:
 
 - **Colours** are CSS tokens in `src/app/globals.css`: `paper`, `ink`, `ink-2`, `ink-3`, `rule`, and one accent, `rubric` (red, as in rubricated manuscript headings). Don't introduce new colours. Dark bands use `bg-band` with `text-on-dark`.
-- **Type**: Inter Tight for headings and UI (`display` class), EB Garamond for reading text and labels. Small labels use the `label` class (Garamond small caps, old-style numerals). Don't use monospace for labels.
+- **Type**: Inter Tight for headings and UI (`display` class), EB Garamond for reading text and labels. Small labels use the `label` class (Garamond small caps, old-style numerals). Monospace (IBM Plex Mono, `font-mono`) is reserved for data-style lists and index numbers, as on Publications: the uppercase fact lists with red squares and the `01`, `02` numbering in `IndexList`. Don't use it for general labels.
 - Section labels are `¶ Label` with a red pilcrow, not numbers.
 - Headings use the existing size scale; copy an equivalent element's classes rather than inventing new sizes. Section headings all share one size (see `SectionHead` in `blocks.tsx`).
 - Lists with thin horizontal rules, not boxed card grids.

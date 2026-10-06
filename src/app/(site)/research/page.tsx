@@ -6,7 +6,8 @@ import { getProjects } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Research",
-  description: "The Travelers’ Lab’s research projects, active and archived, from Byzantine Constantinople to eighteenth-century London.",
+  description:
+    "The Travelers’ Lab’s research projects, active and archived, from Byzantine Constantinople to eighteenth-century London.",
   alternates: { canonical: "/research" },
 };
 
@@ -18,25 +19,32 @@ export default async function ResearchPage() {
   return (
     <>
       <PageHead
-        eyebrow="Research"
-        title="Projects"
-        intro="Each project draws on a different body of evidence from a different culture. The datasets are built in the open, with the aim of publishing the data alongside the research."
+        title="Research"
+        meta={`${projects.length} projects · ${active.length} active`}
+        statement="Each project draws on *a different body of evidence* from a different culture, with datasets built in the open to be *published alongside the research.*"
       />
 
       <section className="gutter py-16 lg:py-24">
         <ProjectTimeline projects={projects} />
         <div className="mb-8 mt-16 flex items-baseline justify-between gap-6 md:mt-24">
-          <h2 className="display text-[clamp(1.6rem,2.8vw,2.3rem)] leading-none">Active projects</h2>
+          <h2 className="display text-[clamp(1.6rem,2.8vw,2.3rem)] leading-none">
+            Active projects
+          </h2>
           <p className="label text-ink-3">{active.length} projects</p>
         </div>
         <ProjectList projects={active} />
       </section>
 
       {/* Same dark band as the homepage network section */}
-      <section id="archive" className="scroll-mt-20 bg-band py-20 text-on-dark lg:py-32">
+      <section
+        id="archive"
+        className="scroll-mt-20 bg-band py-20 text-on-dark lg:py-32"
+      >
         <div className="gutter">
           <div className="mb-8 flex items-baseline justify-between gap-6">
-            <h2 className="display text-[clamp(1.6rem,2.8vw,2.3rem)] leading-none">The archive</h2>
+            <h2 className="display text-[clamp(1.6rem,2.8vw,2.3rem)] leading-none">
+              The archive
+            </h2>
             <p className="label text-on-dark/60">{archived.length} projects</p>
           </div>
           <ul>
@@ -54,12 +62,22 @@ export default async function ResearchPage() {
                 >
                   <span className="md:col-span-5">
                     {/* lighter red: the standard rubric is too dark to read on this background */}
-                    <span className="display text-xl tracking-[-0.02em] group-hover:text-[#e46a4f]">{p.title}</span>
-                    <span className="mt-1 block text-[0.92rem] text-on-dark/60 md:pr-6">{p.summary}</span>
+                    <span className="display text-xl tracking-[-0.02em] group-hover:text-[#e46a4f]">
+                      {p.title}
+                    </span>
+                    <span className="mt-1 block text-[0.92rem] text-on-dark/60 md:pr-6">
+                      {p.summary}
+                    </span>
                   </span>
-                  <span className="text-[0.92rem] text-on-dark/80 md:col-span-2 md:pt-1">{p.period}</span>
-                  <span className="text-[0.92rem] text-on-dark/80 md:col-span-2 md:pt-1">{p.region}</span>
-                  <span className="text-[0.92rem] text-on-dark/80 md:col-span-3 md:pt-1">{p.leads.join(", ")}</span>
+                  <span className="text-[0.92rem] text-on-dark/80 md:col-span-2 md:pt-1">
+                    {p.period}
+                  </span>
+                  <span className="text-[0.92rem] text-on-dark/80 md:col-span-2 md:pt-1">
+                    {p.region}
+                  </span>
+                  <span className="text-[0.92rem] text-on-dark/80 md:col-span-3 md:pt-1">
+                    {p.leads.join(", ")}
+                  </span>
                 </Link>
               </li>
             ))}

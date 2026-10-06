@@ -38,7 +38,7 @@ export default async function PostPage(props: PageProps<"/blog/[slug]">) {
       <header className="gutter border-b border-rule pb-12 pt-14 lg:pb-16 lg:pt-24">
         <nav aria-label="Breadcrumb" className="label text-ink-3">
           <Link href="/blog" className="hover:text-rubric">
-            Lab notes
+            Blog
           </Link>
           {project && (
             <>

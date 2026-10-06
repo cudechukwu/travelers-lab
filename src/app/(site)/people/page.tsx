@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { PageHead } from "@/components/blocks";
 import { Prose } from "@/components/Prose";
-import { getPage, getPeople, isCurrentStudent, type Person } from "@/lib/content";
+import {
+  getPage,
+  getPeople,
+  isCurrentStudent,
+  type Person,
+} from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "People",
-  description: "Faculty, network members, students and alumni of the Travelers’ Lab.",
+  description:
+    "Faculty, network members, students and alumni of the Travelers’ Lab.",
   alternates: { canonical: "/people" },
 };
 
@@ -19,7 +24,10 @@ function Initials({ name }: { name: string }) {
     .slice(0, 2)
     .join("");
   return (
-    <div className="display flex size-full items-center justify-center text-3xl text-ink-3" aria-hidden>
+    <div
+      className="display flex size-full items-center justify-center text-3xl text-ink-3"
+      aria-hidden
+    >
       {initials}
     </div>
   );
@@ -55,9 +63,14 @@ function FacultyRow({ person }: { person: Person }) {
           )}
         </h3>
         {person.role && <p className="mt-2 text-ink-2">{person.role}</p>}
-        {person.institution && <p className="label mt-3 text-ink-3">{person.institution}</p>}
+        {person.institution && (
+          <p className="label mt-3 text-ink-3">{person.institution}</p>
+        )}
         {person.email && (
-          <a href={`mailto:${person.email}`} className="link-arrow mt-3 text-[0.95rem]">
+          <a
+            href={`mailto:${person.email}`}
+            className="link-arrow mt-3 text-[0.95rem]"
+          >
             {person.email}
           </a>
         )}
@@ -72,22 +85,48 @@ function FacultyRow({ person }: { person: Person }) {
 }
 
 /** Compact entry for students and alumni. Alumni bios are left out: they were written while they were students. */
-function StudentEntry({ person, showBio }: { person: Person; showBio: boolean }) {
+function StudentEntry({
+  person,
+  showBio,
+}: {
+  person: Person;
+  showBio: boolean;
+}) {
   return (
     <li>
       <h3 className="display text-xl tracking-[-0.02em]">{person.name}</h3>
-      {person.classYear && <p className="label mt-2 text-ink-3">Class of {person.classYear}</p>}
-      {person.role && <p className="mt-2 text-[0.95rem] text-ink-2">{person.role}</p>}
-      {showBio && person.bio && <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-2">{person.bio}</p>}
+      {person.classYear && (
+        <p className="label mt-2 text-ink-3">Class of {person.classYear}</p>
+      )}
+      {person.role && (
+        <p className="mt-2 text-[0.95rem] text-ink-2">{person.role}</p>
+      )}
+      {showBio && person.bio && (
+        <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-2">
+          {person.bio}
+        </p>
+      )}
     </li>
   );
 }
 
-function Group({ id, title, count, children }: { id: string; title: string; count: number; children: React.ReactNode }) {
+function Group({
+  id,
+  title,
+  count,
+  children,
+}: {
+  id: string;
+  title: string;
+  count: number;
+  children: React.ReactNode;
+}) {
   return (
     <section id={id} className="gutter scroll-mt-20 py-14 lg:py-20">
       <div className="mb-10 flex items-baseline justify-between gap-6 border-b border-rule pb-6 lg:mb-14">
-        <h2 className="display text-[clamp(1.6rem,2.8vw,2.3rem)] leading-none">{title}</h2>
+        <h2 className="display text-[clamp(1.6rem,2.8vw,2.3rem)] leading-none">
+          {title}
+        </h2>
         <p className="label text-ink-3">{count}</p>
       </div>
       {children}
@@ -96,38 +135,24 @@ function Group({ id, title, count, children }: { id: string; title: string; coun
 }
 
 export default async function PeoplePage() {
-  const [people, alumniPage] = await Promise.all([getPeople(), getPage("alumni")]);
+  const [people, alumniPage] = await Promise.all([
+    getPeople(),
+    getPage("alumni"),
+  ]);
   const faculty = people.filter((p) => p.group === "faculty");
   const network = people.filter((p) => p.group === "network");
   const students = people.filter((p) => isCurrentStudent(p));
   const recentAlumni = people
-    .filter((p) => p.group === "alumni" || (p.group === "student" && !isCurrentStudent(p)))
+    .filter(
+      (p) =>
+        p.group === "alumni" || (p.group === "student" && !isCurrentStudent(p)),
+    )
     .sort((a, b) => (b.classYear ?? "").localeCompare(a.classYear ?? ""));
   const alumniBody = alumniPage ? (await alumniPage.content()).node : null;
 
-  const jump = [
-    { id: "faculty", label: "Faculty" },
-    { id: "network", label: "Network" },
-    { id: "students", label: "Students" },
-    { id: "alumni", label: "Alumni" },
-  ];
-
   return (
     <>
-      <PageHead
-        eyebrow="People"
-        title="The lab"
-        intro="Faculty and students across several campuses, united by shared puzzles about movement and communication. To get involved, reach out to any of the faculty below."
-      >
-        <nav aria-label="On this page" className="label mt-10 flex flex-wrap gap-x-6 gap-y-3 text-ink-2">
-          {jump.map((j) => (
-            <a key={j.id} href={`#${j.id}`} className="hover:text-rubric">
-              {j.label} ↓
-            </a>
-          ))}
-        </nav>
-      </PageHead>
-
+      <h1 className="sr-only">People</h1>
       <Group id="faculty" title="Faculty" count={faculty.length}>
         <ul className="space-y-16 lg:space-y-20">
           {faculty.map((p) => (
@@ -154,7 +179,10 @@ export default async function PeoplePage() {
         ) : (
           <p className="text-ink-2">
             Student researchers for this year will be listed soon.{" "}
-            <Link href="/get-involved" className="underline underline-offset-4 hover:text-rubric">
+            <Link
+              href="/get-involved"
+              className="underline underline-offset-4 hover:text-rubric"
+            >
               Interested in joining?
             </Link>
           </p>
@@ -173,12 +201,18 @@ export default async function PeoplePage() {
           <details className="group mt-14 border-t border-rule pt-6">
             <summary className="label flex cursor-pointer list-none items-center justify-between text-ink-2 hover:text-rubric">
               Earlier lab alumni, 2016 onward
-              <span className="transition-transform group-open:rotate-45" aria-hidden>
+              <span
+                className="transition-transform group-open:rotate-45"
+                aria-hidden
+              >
                 +
               </span>
             </summary>
             <div className="mt-8 lg:grid lg:grid-cols-12">
-              <Prose node={alumniBody} className="lg:col-span-8 lg:col-start-4" />
+              <Prose
+                node={alumniBody}
+                className="lg:col-span-8 lg:col-start-4"
+              />
             </div>
           </details>
         )}
