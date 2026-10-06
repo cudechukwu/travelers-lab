@@ -51,7 +51,11 @@ export function ProjectPanels({
   useEffect(() => {
     const d = dialog.current;
     if (!d) return;
-    if (slug && !d.open) d.showModal();
+    if (slug && !d.open) {
+      d.showModal();
+      // Start keyboard focus on the panel, not the close button, so no focus ring flashes on open
+      d.querySelector<HTMLElement>("[data-panel-start]")?.focus();
+    }
     if (!slug && d.open) d.close();
     if (slug) d.scrollTop = 0;
   }, [slug]);
@@ -112,7 +116,9 @@ export function ProjectPanels({
             </svg>
           </button>
         </div>
-        {slug && panels[slug]}
+        <div data-panel-start tabIndex={-1} style={{ outline: "none" }}>
+          {slug && panels[slug]}
+        </div>
       </dialog>
     </PanelContext.Provider>
   );

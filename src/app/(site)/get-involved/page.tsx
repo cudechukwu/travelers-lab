@@ -13,11 +13,17 @@ export const metadata: Metadata = {
 const PATHS = [
   {
     label: "Students",
+    subject: "Joining the Travelers’ Lab",
+    action: "Reach out",
+    button: "bg-on-dark text-band hover:bg-rubric hover:text-on-dark",
     title: "Do real research as an undergraduate.",
     body: "Students join through research apprenticeships, Quantitative Analysis Center summer positions and courses such as Advanced Research in Digital History (COL 375). Students at any affiliated faculty member’s institution are welcome to reach out.",
   },
   {
     label: "Scholars",
+    subject: "Collaborating with the Travelers’ Lab",
+    action: "Send an email",
+    button: "bg-rubric text-on-dark hover:bg-on-dark hover:text-band",
     title: "Collaborate across campuses.",
     body: "The lab is an open working group. We welcome scholars interested in travel and communication, and we aim to publish data on the movement of people, objects and information for others to use. Most of us are medievalists, but the lab isn’t limited to that period or to Europe.",
   },
@@ -56,6 +62,8 @@ export default async function GetInvolvedPage() {
   const faculty = (await getPeople()).filter(
     (p) => p.group === "faculty" && !p.hideFromContact,
   );
+  // The lab's first point of contact: the faculty member listed first on People
+  const lead = faculty.find((f) => f.email);
 
   return (
     <>
@@ -79,6 +87,14 @@ export default async function GetInvolvedPage() {
               <p className="mt-5 max-w-lg leading-relaxed text-on-dark/90">
                 {p.body}
               </p>
+              {lead?.email && (
+                <a
+                  href={`mailto:${lead.email}?subject=${encodeURIComponent(p.subject)}`}
+                  className={`mt-8 inline-flex items-center gap-3 px-5 py-3.5 transition-colors ${p.button}`}
+                >
+                  {p.action} <span aria-hidden>→</span>
+                </a>
+              )}
             </div>
           ))}
         </div>

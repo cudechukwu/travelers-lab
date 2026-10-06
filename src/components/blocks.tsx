@@ -186,24 +186,23 @@ export function PageHead({
   children?: ReactNode;
 }) {
   return (
-    <header className="gutter grid gap-8 border-b border-rule pb-12 pt-10 lg:grid-cols-12 lg:gap-6 lg:pb-16 lg:pt-14">
+    // Three blocks so phones read name, sentence, then summary; on wide
+    // screens the summary tucks under the name beside the sentence.
+    <header className="gutter grid gap-8 border-b border-rule pb-12 pt-10 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-6 lg:gap-y-10 lg:pb-16 lg:pt-14">
       <div
         className={
           hideTitle
             ? "sr-only"
-            : `lg:col-span-4 ${flip ? "lg:order-2 lg:col-start-9" : ""}`
+            : `lg:col-span-4 lg:row-start-1 ${flip ? "lg:col-start-9" : "lg:col-start-1"}`
         }
       >
         <h1 className="display text-[1.5rem] leading-tight tracking-[-0.025em]">
           {title}
         </h1>
         {meta && <p className="mt-1.5 text-[1.05rem] text-ink-3">{meta}</p>}
-        {aside && <div className="mt-10">{aside}</div>}
       </div>
       <div
-        className={
-          flip ? "lg:order-1 lg:col-span-7" : "lg:col-span-7 lg:col-start-6"
-        }
+        className={`lg:col-span-7 lg:row-span-2 lg:row-start-1 ${flip ? "lg:col-start-1" : "lg:col-start-6"}`}
       >
         {statement && (
           <p className="display max-w-[24em] text-[clamp(1.6rem,2.9vw,2.7rem)] leading-[1.1] tracking-[-0.03em] text-ink-3/80">
@@ -212,6 +211,13 @@ export function PageHead({
         )}
         {children}
       </div>
+      {aside && (
+        <div
+          className={`mt-4 lg:col-span-4 lg:row-start-2 lg:mt-0 ${flip ? "lg:col-start-9" : "lg:col-start-1"}`}
+        >
+          {aside}
+        </div>
+      )}
     </header>
   );
 }
