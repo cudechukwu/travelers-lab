@@ -538,3 +538,10 @@ html:has(.search-panel[open]) {
   --rubric: #ffffff;
   color-scheme: dark;
 }
+
+/* Selected text on the grey and red project headers: an inverted highlight, since the usual red-on-white would vanish */
+.archive-tone ::selection,
+.active-tone ::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
