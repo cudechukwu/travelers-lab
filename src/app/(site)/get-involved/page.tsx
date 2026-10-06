@@ -70,7 +70,7 @@ export default async function GetInvolvedPage() {
       <PageHead
         title="Get involved"
         flip
-        meta="Students and scholars"
+        meta="Based at Wesleyan’s Quantitative Analysis Center"
         statement="We welcome connections and comments. *Write to one of the faculty below about collaboration or joining the lab.*"
       />
 

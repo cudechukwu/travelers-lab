@@ -93,7 +93,7 @@ Opening paragraph…
 
 About, Teaching (built from `courses`, `digital-history`, `acceleration-of-europe`) and the earlier-alumni text are in `content/pages/`. Edit the `.mdoc` body. A page's `intro` is the large opening line at the top: wrap key words in `*asterisks*` to print them dark (the rest is grey). Keep the dark words to one or two short phrases.
 
-Page headers (`PageHead` in `blocks.tsx`): the page name sits small on one side with a fact or two (`meta`), the opening line large on the other. `flip` swaps sides (Blog, Get involved, Publications); `hideTitle` keeps the name for screen readers only (Blog). People has no header and starts with the faculty.
+Page headers (`PageHead` in `blocks.tsx`): the page name sits small on one side with a fact or two (`meta`), the opening line large on the other. `flip` swaps sides (Blog, Get involved); `hideTitle` keeps the name for screen readers only (Blog). People has no header and starts with the faculty.
 
 ### Homepage project panel
 

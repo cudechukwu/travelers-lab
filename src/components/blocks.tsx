@@ -205,7 +205,7 @@ export function PageHead({
         className={`lg:col-span-7 lg:row-span-2 lg:row-start-1 ${flip ? "lg:col-start-1" : "lg:col-start-6"}`}
       >
         {statement && (
-          <p className="display max-w-[24em] text-[clamp(1.6rem,2.9vw,2.7rem)] leading-[1.1] tracking-[-0.03em] text-ink-3/80">
+          <p className="display max-w-[24em] text-[clamp(1.4rem,2.35vw,2.2rem)] leading-[1.12] tracking-[-0.025em] text-ink-3/80">
             <Statement text={statement} />
           </p>
         )}
@@ -253,7 +253,7 @@ export function IndexList({
                   </span>
                 )}
               </span>
-              <span className="display text-[1.6rem] leading-none tabular-nums">
+              <span className="display text-[1.4rem] leading-none tabular-nums">
                 {r.count}
               </span>
               {r.href && (
@@ -266,7 +266,7 @@ export function IndexList({
               )}
             </>
           );
-          const cls = "group flex items-center gap-4 py-3.5";
+          const cls = "group flex items-center gap-4 py-3";
           return (
             <li key={i} className="border-t border-rule">
               {r.href ? (

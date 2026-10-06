@@ -27,23 +27,23 @@ export default async function PublicationsPage() {
     <>
       <PageHead
         title={page.title}
-        flip
         meta={`${publications.length} works`}
         statement={page.intro || undefined}
         aside={
-          <>
-            <YearStrip publications={publications} />
-            <IndexList
-              label="By type"
-              rows={kinds.map((k) => ({
-                label: kindLabels[k],
-                count: publications.filter((p) => p.kind === k).length,
-                href: `#${publications.find((p) => p.kind === k)!.slug}`,
-              }))}
-            />
-          </>
+          <IndexList
+            label="By type"
+            rows={kinds.map((k) => ({
+              label: kindLabels[k],
+              count: publications.filter((p) => p.kind === k).length,
+              href: `#${publications.find((p) => p.kind === k)!.slug}`,
+            }))}
+          />
         }
-      />
+      >
+        <div className="mt-10 max-w-md lg:mt-14">
+          <YearStrip publications={publications} />
+        </div>
+      </PageHead>
       <ol className="gutter pb-10 [&>li:first-child]:border-t-0">
         {publications.map((p, i) => (
           <PublicationRow key={p.slug} publication={p} index={i} />

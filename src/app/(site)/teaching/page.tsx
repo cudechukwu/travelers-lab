@@ -30,6 +30,7 @@ export default async function TeachingPage() {
     <>
       <PageHead
         title="Teaching"
+        meta="Courses since 2014"
         statement="Bringing research into the classroom: undergraduate courses where students do *real work on the lab’s projects.*"
       />
       <div className="gutter grid gap-12 py-14 lg:grid-cols-12 lg:py-20">

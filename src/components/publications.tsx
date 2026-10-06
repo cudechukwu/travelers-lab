@@ -274,7 +274,7 @@ export function YearStrip({ publications }: { publications: Publication[] }) {
   const last = Math.max(...years);
   const span = Array.from({ length: last - first + 1 }, (_, i) => first + i);
   return (
-    <figure aria-label="Publications by year" className="mb-8">
+    <figure aria-label="Publications by year">
       <div className="flex border-b border-rule">
         {span.map((y) => {
           const items = publications.filter((p) =>
