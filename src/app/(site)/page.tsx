@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { NetworkMap, hasSite } from "@/components/NetworkMap";
 import { SectionHead } from "@/components/blocks";
+import { ProjectPanel } from "@/components/ProjectPanel";
+import { ProjectPanels } from "@/components/ProjectPanels";
 import { ProjectList, ProjectTimeline, centuryRange } from "@/components/projects";
 import { getPeople, getProjects } from "@/lib/content";
 
@@ -22,6 +24,7 @@ export default async function HomePage() {
   const faculty = people.filter((p) => p.group === "faculty" || p.group === "network");
   const institutions = [...new Set(faculty.map((p) => p.institution).filter((i): i is string => !!i && hasSite(i)))];
   const methods = [...new Set(projects.flatMap((p) => p.methods))];
+  const panels = Object.fromEntries(projects.map((p) => [p.slug, <ProjectPanel key={p.slug} project={p} />]));
 
   return (
     <>
@@ -69,13 +72,15 @@ export default async function HomePage() {
           }
           link={{ href: "/research", label: `All ${projects.length} projects` }}
         />
-        <ProjectTimeline projects={projects} />
-        <div className="mt-12 md:mt-20">
-          <p className="label mb-4 text-ink-3">
-            <span className="text-rubric">●</span> Active now · {active.length}
-          </p>
-          <ProjectList projects={active} />
-        </div>
+        <ProjectPanels panels={panels}>
+          <ProjectTimeline projects={projects} />
+          <div className="mt-12 md:mt-20">
+            <p className="label mb-4 text-ink-3">
+              <span className="text-rubric">●</span> Active now · {active.length}
+            </p>
+            <ProjectList projects={active} />
+          </div>
+        </ProjectPanels>
       </section>
 
       {/* The network */}

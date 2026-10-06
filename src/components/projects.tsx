@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { Project } from "@/lib/content";
+import { ProjectLink } from "./ProjectPanels";
 import { Reveal } from "./Reveal";
 
 const MIN = 200;
@@ -52,7 +52,7 @@ export function ProjectTimeline({ projects }: { projects: Project[] }) {
               const active = p.status === "active";
               return (
                 <li key={p.slug} className="border-t border-rule">
-                  <Link href={`/research/${p.slug}`} className="group flex h-10 items-center transition-colors hover:bg-paper-2">
+                  <ProjectLink slug={p.slug} className="group flex h-10 items-center transition-colors hover:bg-paper-2">
                     <span
                       className={`${labelCol} shrink-0 truncate pr-4 text-[0.95rem] transition-colors group-hover:text-rubric ${active ? "text-ink" : "text-ink-3"}`}
                     >
@@ -74,7 +74,7 @@ export function ProjectTimeline({ projects }: { projects: Project[] }) {
                         {range(p)}
                       </span>
                     </span>
-                  </Link>
+                  </ProjectLink>
                 </li>
               );
             })}
@@ -135,8 +135,8 @@ export function ProjectList({ projects }: { projects: Project[] }) {
     <ul className="border-b border-rule">
       {projects.map((p) => (
         <li key={p.slug} className="border-t border-rule">
-          <Link
-            href={`/research/${p.slug}`}
+          <ProjectLink
+            slug={p.slug}
             className="group grid gap-x-8 gap-y-3 py-8 transition-colors lg:grid-cols-12 lg:py-10"
           >
             <div className="lg:col-span-4">
@@ -157,7 +157,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
                 →
               </span>
             </div>
-          </Link>
+          </ProjectLink>
         </li>
       ))}
     </ul>
