@@ -116,7 +116,7 @@ export function ProjectPanels({
             </svg>
           </button>
         </div>
-        <div data-panel-start tabIndex={-1} style={{ outline: "none" }}>
+        <div data-panel-start tabIndex={-1} className="no-focus-ring">
           {slug && panels[slug]}
         </div>
       </dialog>

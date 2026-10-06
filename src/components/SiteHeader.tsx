@@ -4,12 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NAV } from "@/lib/nav";
+import { Search } from "./Search";
 import { WindRose } from "./WindRose";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
 
   // On the homepage the header is see-through over the hero, then turns solid once you scroll past it
   const [pastHero, setPastHero] = useState(false);
@@ -45,7 +47,9 @@ export function SiteHeader() {
     <>
       <header
         className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-          transparent ? "border-transparent bg-transparent" : "border-rule bg-paper/95 backdrop-blur-sm"
+          transparent
+            ? "border-transparent bg-transparent"
+            : "border-rule bg-paper/95 backdrop-blur-sm"
         }`}
       >
         <a
@@ -61,10 +65,15 @@ export function SiteHeader() {
             className="flex shrink-0 items-center gap-2.5 pl-5 pr-6 sm:pl-8 lg:pl-14 xl:pl-20"
           >
             <WindRose className="size-5 text-rubric" />
-            <span className="display text-[1.05rem] tracking-[-0.02em]">Travelers’ Lab</span>
+            <span className="display text-[1.05rem] tracking-[-0.02em]">
+              Travelers’ Lab
+            </span>
           </Link>
 
-          <nav aria-label="Main" className="hidden flex-1 items-center justify-center lg:flex">
+          <nav
+            aria-label="Main"
+            className="hidden flex-1 items-center justify-center lg:flex"
+          >
             <ul className="flex gap-7 text-[0.9rem]">
               {NAV.map((item) => (
                 <li key={item.href}>
@@ -81,11 +90,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="ml-auto flex items-stretch">
-            <span
-              className={`label hidden items-center border-l px-6 text-ink-3 xl:flex ${transparent ? "border-transparent" : "border-rule"}`}
-            >
-              41.55°N 72.66°W
-            </span>
+            <Search tone={transparent ? "clear" : "light"} />
             <Link
               href="/get-involved"
               className="hidden items-center gap-3 bg-ink px-6 text-[0.9rem] text-paper transition-colors hover:bg-rubric sm:flex"
@@ -111,7 +116,6 @@ export function SiteHeader() {
             </button>
           </div>
         </div>
-
       </header>
 
       {/* Rendered outside <header>: its backdrop blur would otherwise trap this fixed panel inside the bar */}
@@ -131,7 +135,9 @@ export function SiteHeader() {
                     className="flex items-baseline justify-between py-4 aria-[current=page]:text-rubric"
                   >
                     <span className="display text-3xl">{item.label}</span>
-                    <span className="label text-ink-3">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="label text-ink-3">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -144,7 +150,9 @@ export function SiteHeader() {
               Get involved <span aria-hidden>→</span>
             </Link>
           </nav>
-          <p className="label gutter pb-6 text-ink-3">41.55°N 72.66°W · Middletown, CT</p>
+          <p className="label gutter pb-6 text-ink-3">
+            41.55°N 72.66°W · Middletown, CT
+          </p>
         </div>
       )}
     </>

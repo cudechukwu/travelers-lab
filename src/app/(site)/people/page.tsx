@@ -35,7 +35,7 @@ function Initials({ name }: { name: string }) {
 
 function FacultyRow({ person }: { person: Person }) {
   return (
-    <li className="grid gap-6 sm:grid-cols-12">
+    <li id={person.slug} className="grid scroll-mt-24 gap-6 sm:grid-cols-12">
       <div className="relative aspect-[4/5] w-28 overflow-hidden bg-paper-2 sm:col-span-3 sm:w-auto lg:col-span-2">
         {person.photo ? (
           <Image
@@ -93,7 +93,7 @@ function StudentEntry({
   showBio: boolean;
 }) {
   return (
-    <li>
+    <li id={person.slug} className="scroll-mt-24">
       <h3 className="display text-xl tracking-[-0.02em]">{person.name}</h3>
       {person.classYear && (
         <p className="label mt-2 text-ink-3">Class of {person.classYear}</p>

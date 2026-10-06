@@ -99,6 +99,10 @@ Page headers (`PageHead` in `blocks.tsx`): the page name sits small on one side 
 
 Clicking a project in the homepage timeline or "Active now" list opens a side panel (`?project=<slug>`) instead of leaving the page; the full project page is one click away. The panel shows the first image in the write-up, cropped and greyscale; set `panelImage: whole` on a project to show it uncropped instead (book covers, charts).
 
+### Site search
+
+The search button in the header (or `/`, or Cmd/Ctrl+K) opens a panel that searches projects, publications, people, blog posts and the About/Teaching/alumni pages. The search list is built from the content files at build time (`src/lib/search.ts`, served at `/search-index.json`) and downloaded only when someone first opens search, so new content is searchable as soon as the site redeploys; nothing to maintain. To make a new page searchable, add it to the `pages` list in `src/lib/search.ts`. People results link to `/people#<slug>`.
+
 ## Design rules (keep the site consistent)
 
 The look is deliberately “manuscript and map” rather than a tech template. When adding UI:

@@ -87,6 +87,11 @@ body {
   outline: 2px solid var(--rubric);
   outline-offset: 3px;
 }
+/* For elements that show focus another way (the search field's tint) or take focus only to start keyboard navigation */
+.no-focus-ring:focus,
+.no-focus-ring:focus-visible {
+  outline: none;
+}
 
 @layer components {
   .gutter {
@@ -453,5 +458,52 @@ html:has(.project-panel[open]) {
 @media (prefers-reduced-motion: reduce) {
   .glyph * {
     animation: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Site search: drops down from the top over a dimmed page.
+------------------------------------------------------------------- */
+.search-panel {
+  opacity: 0;
+  transform: translateY(-1rem);
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    overlay 0.35s allow-discrete,
+    display 0.35s allow-discrete;
+}
+.search-panel[open] {
+  opacity: 1;
+  transform: none;
+}
+@starting-style {
+  .search-panel[open] {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+}
+.search-panel::backdrop {
+  background: rgb(0 0 0 / 0);
+  transition:
+    background 0.3s,
+    overlay 0.3s allow-discrete,
+    display 0.3s allow-discrete;
+}
+.search-panel[open]::backdrop {
+  background: rgb(0 0 0 / 0.45);
+}
+@starting-style {
+  .search-panel[open]::backdrop {
+    background: rgb(0 0 0 / 0);
+  }
+}
+html:has(.search-panel[open]) {
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .search-panel,
+  .search-panel::backdrop {
+    transition: none;
   }
 }
