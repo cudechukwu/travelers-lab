@@ -88,12 +88,18 @@ export default async function GetInvolvedPage() {
                 {p.body}
               </p>
               {lead?.email && (
-                <a
-                  href={`mailto:${lead.email}?subject=${encodeURIComponent(p.subject)}`}
-                  className={`mt-8 inline-flex items-center gap-3 px-5 py-3.5 transition-colors ${p.button}`}
-                >
-                  {p.action} <span aria-hidden>→</span>
-                </a>
+                <div className="mt-8">
+                  {/* Opens a filled-in message in Gmail on the web */}
+                  <a
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(lead.email)}&su=${encodeURIComponent(p.subject)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-3 px-5 py-3.5 transition-colors ${p.button}`}
+                  >
+                    {p.action} <span aria-hidden>→</span>
+                    <span className="sr-only"> (opens Gmail in a new tab)</span>
+                  </a>
+                </div>
               )}
             </div>
           ))}
