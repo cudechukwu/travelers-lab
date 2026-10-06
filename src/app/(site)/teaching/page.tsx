@@ -4,7 +4,11 @@ import { PageHead } from "@/components/blocks";
 import { Prose } from "@/components/Prose";
 import { getPage } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Teaching" };
+export const metadata: Metadata = {
+  title: "Teaching",
+  description: "Courses connected to the Travelers’ Lab, where Wesleyan students do research on the lab’s projects.",
+  alternates: { canonical: "/teaching" },
+};
 
 const SECTIONS = ["digital-history", "acceleration-of-europe"];
 

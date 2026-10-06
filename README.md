@@ -50,7 +50,8 @@ The repository currently lives on Chukwudi Udechukwu's GitHub. To hand it over t
 2. **Deploy it.** Create a free [Vercel](https://vercel.com) account, choose *Add New → Project*, and import the repository. The defaults work. Every change pushed to `main` then publishes automatically.
 3. **Turn on the editor's sign-in.** Follow *“Publishing without code”* at the end of `CLAUDE.md` (or ask Claude to walk you through it). This connects `/keystatic` to GitHub so edits made on the live site are saved.
 4. **Give editors access.** Add each lab member who should edit the site as a collaborator on the repository (*Settings → Collaborators*).
-5. **Use the real address.** Ask Wesleyan ITS to point `travelerslab.research.wesleyan.edu` (or a new address) at the Vercel project. When it goes live, remove the `robots: { index: false … }` line in `src/app/layout.tsx` so search engines can list the site.
+5. **Use the real address and let search engines in.** Ask Wesleyan ITS to point `travelerslab.research.wesleyan.edu` (or a new address) at the Vercel project. Then, in Vercel → *Settings → Environment Variables*, add `NEXT_PUBLIC_SITE_URL` (the full address, e.g. `https://travelerslab.research.wesleyan.edu`) and `SITE_INDEXABLE` = `true`, and redeploy. Until then the site tells search engines not to list it.
+6. **Register with Google.** Add the address in [Google Search Console](https://search.google.com/search-console) and submit `/sitemap.xml`. Search results improve over the following weeks; the lab's old links (DOIs, papers) already redirect to the new pages.
 
 ## Built with
 

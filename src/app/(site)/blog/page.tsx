@@ -3,7 +3,11 @@ import Link from "next/link";
 import { PageHead, PostRow } from "@/components/blocks";
 import { getPosts, getProjects } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Lab notes" };
+export const metadata: Metadata = {
+  title: "Lab notes",
+  description: "Lab notes: in-progress write-ups of Travelers’ Lab projects, methods and conference appearances.",
+  alternates: { canonical: "/blog" },
+};
 
 export default async function BlogPage(props: PageProps<"/blog">) {
   const { project: filter } = await props.searchParams;

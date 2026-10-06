@@ -13,7 +13,9 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: PageProps<"/research/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
   const project = await getProject(slug);
-  return project ? { title: project.shortTitle || project.title, description: project.summary } : {};
+  return project
+    ? { title: project.shortTitle || project.title, description: project.summary, alternates: { canonical: `/research/${slug}` } }
+    : {};
 }
 
 export default async function ProjectPage(props: PageProps<"/research/[slug]">) {

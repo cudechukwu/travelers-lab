@@ -4,7 +4,11 @@ import { PageHead } from "@/components/blocks";
 import { ProjectList, ProjectTimeline } from "@/components/projects";
 import { getProjects } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Research" };
+export const metadata: Metadata = {
+  title: "Research",
+  description: "The Travelers’ Lab’s research projects, active and archived, from Byzantine Constantinople to eighteenth-century London.",
+  alternates: { canonical: "/research" },
+};
 
 export default async function ResearchPage() {
   const projects = await getProjects();

@@ -105,7 +105,7 @@ The look is deliberately “manuscript and map” rather than a tech template. W
 
 - **Do not run `npm run import:wp` once people are editing content here.** It re-imports from the old WordPress site and overwrites `content/posts`, `content/projects`, `content/people` and `content/pages`. It exists only for the original migration.
 - `content/redirects.json` keeps old WordPress links (cited in papers and DOIs) working. Don't delete it; the importer regenerates it.
-- The site is set to `noindex` in `src/app/layout.tsx` (`robots`) while it's a prototype. Remove that when it goes live on the real domain.
+- Search engines: `src/lib/site.ts` holds the site address and the `SITE_INDEXABLE` switch. The site is `noindex` until `SITE_INDEXABLE=true` and `NEXT_PUBLIC_SITE_URL` are set in the hosting dashboard. `src/app/sitemap.ts` and `robots.ts` are generated from content automatically; give every new page a `description` in its metadata.
 - Don't commit `.env*` files (they hold Keystatic GitHub secrets).
 - Before pushing: `npm run build` must pass. Then commit with a short message saying what changed for readers of the site (e.g. "Add Fall 2026 Chronicles update post").
 

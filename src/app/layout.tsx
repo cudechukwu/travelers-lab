@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { EB_Garamond, IBM_Plex_Mono, Inter_Tight } from "next/font/google";
+import { INDEXABLE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const interTight = Inter_Tight({ variable: "--font-inter-tight", subsets: ["latin"] });
@@ -7,14 +8,16 @@ const garamond = EB_Garamond({ variable: "--font-garamond", subsets: ["latin"], 
 const plexMono = IBM_Plex_Mono({ variable: "--font-plex-mono", subsets: ["latin"], weight: ["400", "500"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Travelers’ Lab · Wesleyan University",
-    template: "%s · Travelers’ Lab",
+    default: `${SITE_NAME} · Wesleyan University`,
+    template: `%s · ${SITE_NAME}`,
   },
-  description:
-    "An international research collaboration based at Wesleyan University, studying the movement of information, people and objects before industrial travel.",
-  // Prototype: keep it out of search engines until the lab approves it
-  robots: { index: false, follow: false },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  openGraph: { type: "website", siteName: SITE_NAME, locale: "en_US" },
+  // Kept out of search engines until SITE_INDEXABLE=true is set at launch (see src/lib/site.ts)
+  robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

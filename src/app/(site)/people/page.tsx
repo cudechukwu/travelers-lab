@@ -5,7 +5,11 @@ import { PageHead } from "@/components/blocks";
 import { Prose } from "@/components/Prose";
 import { getPage, getPeople, isCurrentStudent, type Person } from "@/lib/content";
 
-export const metadata: Metadata = { title: "People" };
+export const metadata: Metadata = {
+  title: "People",
+  description: "Faculty, network members, students and alumni of the Travelers’ Lab.",
+  alternates: { canonical: "/people" },
+};
 
 function Initials({ name }: { name: string }) {
   const initials = name

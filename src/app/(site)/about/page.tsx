@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPage } from "@/components/ContentPage";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: "About",
+  description: "About the Travelers’ Lab, an open research group at Wesleyan University studying movement, travel and communication in the premodern world.",
+  alternates: { canonical: "/about" },
+};
 
 export default function AboutPage() {
   return (

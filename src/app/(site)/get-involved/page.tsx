@@ -3,7 +3,11 @@ import Image from "next/image";
 import { PageHead } from "@/components/blocks";
 import { getPeople, type Person } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Get involved" };
+export const metadata: Metadata = {
+  title: "Get involved",
+  description: "How students and scholars can join the Travelers’ Lab, and which faculty to contact.",
+  alternates: { canonical: "/get-involved" },
+};
 
 const PATHS = [
   {

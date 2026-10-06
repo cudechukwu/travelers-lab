@@ -12,7 +12,14 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: PageProps<"/blog/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
   const post = await getPost(slug);
-  return post ? { title: post.title, description: post.excerpt } : {};
+  return post
+    ? {
+        title: post.title,
+        description: post.excerpt,
+        alternates: { canonical: `/blog/${slug}` },
+        openGraph: { type: "article", publishedTime: post.date ?? undefined, authors: [...post.authors] },
+      }
+    : {};
 }
 
 export default async function PostPage(props: PageProps<"/blog/[slug]">) {

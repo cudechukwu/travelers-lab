@@ -1,9 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { NetworkMap, hasSite } from "@/components/NetworkMap";
 import { SectionHead } from "@/components/blocks";
 import { ProjectList, ProjectTimeline, centuryRange } from "@/components/projects";
 import { getPeople, getProjects } from "@/lib/content";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 const NUMBER_WORDS = [
   "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
