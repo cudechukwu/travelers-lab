@@ -78,13 +78,14 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
   );
 }
 
-export function PostRow({ post, projects }: { post: Post; projects: Project[] }) {
+/** One post in a list. `striped`: alternating tint instead of rules, for long lists like the blog index. */
+export function PostRow({ post, projects, striped = false }: { post: Post; projects: Project[]; striped?: boolean }) {
   const project = projects.find((p) => p.slug === post.project);
   return (
-    <li className="border-t border-rule">
+    <li className={striped ? "even:bg-paper-2" : "border-t border-rule"}>
       <Link
         href={`/blog/${post.slug}`}
-        className="group grid gap-x-6 gap-y-2 py-6 transition-colors sm:grid-cols-12 lg:py-8"
+        className={`group grid gap-x-6 gap-y-2 py-6 transition-colors sm:grid-cols-12 lg:py-8 ${striped ? "px-4 sm:px-6" : ""}`}
       >
         <time dateTime={post.date ?? undefined} className="label pt-1.5 text-ink-3 sm:col-span-3 lg:col-span-2">
           {formatDate(post.date, "short")}
