@@ -59,12 +59,13 @@ export default async function GetInvolvedPage() {
         intro="We welcome connections and comments. Send general enquiries, or specific requests about collaboration and participation, directly to one of the faculty below."
       />
 
-      {/* Same red band as the homepage's "Get involved" block */}
-      <section className="bg-rubric text-on-dark">
+      <section className="bg-band text-on-dark">
         <div className="gutter grid gap-12 py-16 md:grid-cols-2 md:gap-16 lg:py-24">
           {PATHS.map((p) => (
             <div key={p.label}>
-              <p className="label text-on-dark/70">¶ {p.label}</p>
+              <p className="label text-on-dark/70">
+                <span className="text-rubric">¶</span> {p.label}
+              </p>
               <h2 className="display mt-5 max-w-[16ch] text-[clamp(1.5rem,2.5vw,1.95rem)] leading-[1.05]">{p.title}</h2>
               <p className="mt-5 max-w-lg leading-relaxed text-on-dark/90">{p.body}</p>
             </div>

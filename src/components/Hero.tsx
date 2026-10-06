@@ -75,7 +75,7 @@ const TONES = {
     section: "bg-paper text-ink",
     // the photo as a negative: shadows turn to paper, map lines to ink
     image: "invert grayscale contrast-[1.25] brightness-[1.1] mix-blend-multiply opacity-75",
-    wash: "bg-[linear-gradient(90deg,var(--paper)_0%,rgb(247_247_245/0.8)_40%,rgb(247_247_245/0.1)_75%),linear-gradient(0deg,rgb(247_247_245/0.85)_0%,transparent_45%)]",
+    wash: "bg-[linear-gradient(90deg,var(--paper)_0%,rgb(245_245_245/0.8)_40%,rgb(245_245_245/0.1)_75%),linear-gradient(0deg,rgb(245_245_245/0.85)_0%,transparent_45%)]",
     lines: "text-ink",
     muted: "text-ink-3",
     body: "text-ink-2",
