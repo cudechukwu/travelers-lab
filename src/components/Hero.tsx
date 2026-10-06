@@ -85,7 +85,8 @@ const TONES = {
 
 export function Hero() {
   return (
-    <section className={`relative isolate overflow-hidden ${TONES.section}`}>
+    // Slides up under the see-through header so the hero fills the top of the screen
+    <section id="hero" className={`relative isolate -mt-(--header-h) overflow-hidden pt-(--header-h) ${TONES.section}`}>
       <Image
         src={hero}
         alt=""
@@ -104,7 +105,6 @@ export function Hero() {
       <div className="gutter flex min-h-[clamp(36rem,calc(100svh-var(--header-h)),58rem)] flex-col justify-between gap-12 py-8 lg:py-12">
         <div className={`label flex justify-between gap-4 ${TONES.muted}`}>
           <span>Wesleyan University · Digital Humanities Research</span>
-          <span className="hidden sm:inline">41.55°N 72.66°W</span>
         </div>
 
         <h1 className="display text-[clamp(2.1rem,7.4vw,4.2rem)] leading-[0.97] tracking-[-0.035em] lg:text-[clamp(2.25rem,4vw,4.2rem)]">

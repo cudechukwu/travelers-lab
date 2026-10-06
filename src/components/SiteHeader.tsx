@@ -11,6 +11,25 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
+  // On the homepage the header is see-through over the hero, then turns solid once you scroll past it
+  const [pastHero, setPastHero] = useState(false);
+  const overHero = pathname === "/";
+  useEffect(() => {
+    if (!overHero) return;
+    const update = () => {
+      const hero = document.getElementById("hero");
+      setPastHero(!hero || hero.getBoundingClientRect().bottom <= 56);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [overHero]);
+  const transparent = overHero && !pastHero && !open;
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -23,7 +42,11 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rule bg-paper/95 backdrop-blur-sm">
+    <header
+      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
+        transparent ? "border-transparent bg-transparent" : "border-rule bg-paper/95 backdrop-blur-sm"
+      }`}
+    >
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:bg-ink focus:px-3 focus:py-2 focus:text-paper"
@@ -57,7 +80,9 @@ export function SiteHeader() {
         </nav>
 
         <div className="ml-auto flex items-stretch">
-          <span className="label hidden items-center border-l border-rule px-6 text-ink-3 xl:flex">
+          <span
+            className={`label hidden items-center border-l px-6 text-ink-3 xl:flex ${transparent ? "border-transparent" : "border-rule"}`}
+          >
             41.55°N 72.66°W
           </span>
           <Link
@@ -68,7 +93,7 @@ export function SiteHeader() {
           </Link>
           <button
             type="button"
-            className="flex items-center gap-2 border-l border-rule px-4 text-[0.9rem] sm:px-6 lg:hidden"
+            className={`flex items-center gap-2 border-l px-4 text-[0.9rem] sm:px-6 lg:hidden ${transparent ? "border-transparent" : "border-rule"}`}
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
