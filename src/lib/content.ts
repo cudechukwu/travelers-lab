@@ -39,6 +39,14 @@ export const getPeople = cache(async () => {
 });
 export type Person = Awaited<ReturnType<typeof getPeople>>[number];
 
+export const getPublications = cache(async () => {
+  const publications = await reader.collections.publications.all();
+  return publications
+    .map(({ slug, entry }) => ({ slug, ...entry }))
+    .sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+});
+export type Publication = Awaited<ReturnType<typeof getPublications>>[number];
+
 export const getPage = cache(async (slug: string) => {
   const entry = await reader.collections.pages.read(slug);
   return entry ? { slug, ...entry } : null;

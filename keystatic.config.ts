@@ -28,7 +28,7 @@ export default config({
     brand: { name: "Travelers’ Lab" },
     navigation: {
       Writing: ["posts"],
-      Research: ["projects", "people"],
+      Research: ["projects", "publications", "people"],
       Pages: ["pages"],
     },
   },
@@ -119,8 +119,50 @@ export default config({
           }),
           { label: "Links", itemLabel: (props) => props.fields.label.value || "Link" },
         ),
+        panelImage: fields.select({
+          label: "Homepage panel image",
+          description: "The first image in the write-up heads the homepage panel. “Show whole” suits book covers and charts that shouldn’t be cropped.",
+          options: [
+            { label: "Fill and crop", value: "fill" },
+            { label: "Show whole", value: "whole" },
+          ],
+          defaultValue: "fill",
+        }),
         legacyPath: fields.text({ label: "Old URL path" }),
         content: body("projects"),
+      },
+    }),
+
+    publications: collection({
+      label: "Publications",
+      path: "content/publications/*",
+      slugField: "title",
+      format: { contentField: "abstract" },
+      entryLayout: "content",
+      columns: ["title", "date"],
+      schema: {
+        title: fields.slug({ name: { label: "Title" } }),
+        authors: fields.array(fields.text({ label: "Name" }), {
+          label: "Authors",
+          description: "In the order they appear on the publication.",
+          itemLabel: (props) => props.value || "Author",
+        }),
+        date: fields.date({ label: "Publication date", validation: { isRequired: true } }),
+        kind: fields.select({
+          label: "Type",
+          options: [
+            { label: "Article", value: "article" },
+            { label: "Book chapter", value: "chapter" },
+            { label: "Book", value: "book" },
+            { label: "Digital project", value: "digital" },
+            { label: "Data & archive", value: "data" },
+          ],
+          defaultValue: "article",
+        }),
+        venue: fields.text({ label: "Published in", description: "Journal, volume and issue, or book and publisher." }),
+        url: fields.url({ label: "Link", description: "Where the title links to." }),
+        doi: fields.text({ label: "DOI", description: "Just the identifier, e.g. 10.1111/hith.12276" }),
+        abstract: fields.markdoc({ label: "Abstract or description", options: { heading: false, image: false } }),
       },
     }),
 
