@@ -115,6 +115,8 @@ export function Hero() {
               style={{ animationDelay: `${0.1 + i * 0.12}s` }}
             >
               {line.text}
+              {/* keeps the words apart for screen readers and search engines */}
+              {i < LINES.length - 1 && " "}
             </span>
           ))}
         </h1>
@@ -123,7 +125,7 @@ export function Hero() {
           <p className={`label md:col-span-5 ${TONES.muted}`}>Fig. 1 — The lab studies edicts, coins, seals, letters &amp; receipts</p>
           <div className="md:col-span-5 md:col-start-8">
             <p className={`text-[1.05rem] leading-relaxed sm:text-lg ${TONES.body}`}>
-              The Traveler’s Lab is a Wesleyan-based international research network studying the movement of
+              The Travelers’ Lab is a Wesleyan-based international research network studying the movement of
               knowledge, messages, people and material objects before industrial travel.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-[0.95rem]">
