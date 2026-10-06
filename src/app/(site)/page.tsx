@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { NetworkMap, hasSite } from "@/components/NetworkMap";
-import { PostRow, SectionHead } from "@/components/blocks";
+import { SectionHead } from "@/components/blocks";
 import { ProjectList, ProjectTimeline, centuryRange } from "@/components/projects";
-import { getPeople, getPosts, getProjects } from "@/lib/content";
+import { getPeople, getProjects } from "@/lib/content";
 
 const NUMBER_WORDS = [
   "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
@@ -13,9 +13,8 @@ const numberWord = (n: number) => NUMBER_WORDS[n] ?? String(n);
 const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export default async function HomePage() {
-  const [projects, posts, people] = await Promise.all([getProjects(), getPosts(), getPeople()]);
+  const [projects, people] = await Promise.all([getProjects(), getPeople()]);
   const active = projects.filter((p) => p.status === "active");
-  const archived = projects.filter((p) => p.status === "archived");
 
   const faculty = people.filter((p) => p.group === "faculty" || p.group === "network");
   const institutions = [...new Set(faculty.map((p) => p.institution).filter((i): i is string => !!i && hasSite(i)))];
@@ -74,33 +73,6 @@ export default async function HomePage() {
           </p>
           <ProjectList projects={active} />
         </div>
-        <div className="mt-14 grid gap-4 lg:grid-cols-12">
-          <p className="label pt-1 text-ink-3 lg:col-span-3">The archive · {archived.length} projects</p>
-          <p className="text-[1.05rem] leading-relaxed text-ink-2 lg:col-span-9">
-            {archived.map((p, i) => (
-              <span key={p.slug}>
-                <Link href={`/research/${p.slug}`} className="text-ink hover:text-rubric">
-                  {p.shortTitle}
-                </Link>
-                {i < archived.length - 1 && <span className="px-2 text-ink-3">/</span>}
-              </span>
-            ))}
-          </p>
-        </div>
-      </section>
-
-      {/* Lab notes */}
-      <section className="gutter pb-20 lg:pb-28">
-        <SectionHead
-          label="Lab notes"
-          title="From the research blog"
-          link={{ href: "/blog", label: `All ${posts.length} posts` }}
-        />
-        <ul className="border-b border-rule">
-          {posts.slice(0, 4).map((post) => (
-            <PostRow key={post.slug} post={post} projects={projects} />
-          ))}
-        </ul>
       </section>
 
       {/* The network */}
