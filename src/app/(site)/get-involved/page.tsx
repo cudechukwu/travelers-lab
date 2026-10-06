@@ -55,19 +55,20 @@ export default async function GetInvolvedPage() {
         intro="We welcome connections and comments. Send general enquiries, or specific requests about collaboration and participation, directly to one of the faculty below."
       />
 
-      <section className="gutter grid gap-12 py-14 md:grid-cols-2 md:gap-16 lg:py-20">
-        {PATHS.map((p) => (
-          <div key={p.label}>
-            <p className="label text-ink-3">
-              <span className="text-rubric">¶</span> {p.label}
-            </p>
-            <h2 className="display mt-5 max-w-[16ch] text-[clamp(1.5rem,2.5vw,1.95rem)] leading-[1.05]">{p.title}</h2>
-            <p className="mt-5 max-w-lg leading-relaxed text-ink-2">{p.body}</p>
-          </div>
-        ))}
+      {/* Same red band as the homepage's "Get involved" block */}
+      <section className="bg-rubric text-on-dark">
+        <div className="gutter grid gap-12 py-16 md:grid-cols-2 md:gap-16 lg:py-24">
+          {PATHS.map((p) => (
+            <div key={p.label}>
+              <p className="label text-on-dark/70">¶ {p.label}</p>
+              <h2 className="display mt-5 max-w-[16ch] text-[clamp(1.5rem,2.5vw,1.95rem)] leading-[1.05]">{p.title}</h2>
+              <p className="mt-5 max-w-lg leading-relaxed text-on-dark/90">{p.body}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section className="gutter pb-20 pt-10 lg:pb-28 lg:pt-20">
+      <section className="gutter py-16 lg:py-24">
         <h2 className="label mb-10 text-ink-3">
           <span className="text-rubric">¶</span> Contact a faculty member
         </h2>
