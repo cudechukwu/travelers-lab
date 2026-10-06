@@ -23,7 +23,7 @@ const offset = (i: number, n: number, seconds: number) => ({
  * Hairline drawings, one per entry in turn so neighbours never repeat, each
  * with a slow loop: a globe whose meridians open outward, a network pulsing outward, drifting
  * leaves of a palimpsest, a map grid with data points lighting up, paired
- * orbits opening outward and a route being travelled.
+ * orbits opening outward and a route being traveled.
  */
 const GLYPHS = [
   () => (

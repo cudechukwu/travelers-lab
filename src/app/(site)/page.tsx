@@ -37,7 +37,7 @@ export default async function HomePage() {
         </p>
         <div className="lg:col-span-9">
           <p className="max-w-[19em] font-serif text-[clamp(1.5rem,2.4vw,2.2rem)] leading-[1.2] tracking-[-0.01em]">
-            Beyond famous travellers, mass migrations and armed campaigns, we follow the everyday traffic of the
+            Beyond famous travelers, mass migrations and armed campaigns, we follow the everyday traffic of the
             past: edicts, coins, seals, letters, receipts,{" "}
             <em className="text-rubric">and the pockets that carried them.</em>
           </p>
