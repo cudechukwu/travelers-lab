@@ -331,7 +331,11 @@ const PEOPLE_OVERRIDES: Record<string, Partial<Person>> = {
     order: 0, // listed first among faculty
   },
   "chukwudi-udechukwu": { group: "alumni" },
-  "pavel-oleinikov": { role: "Associate Director, Quantitative Analysis Center", institution: "Wesleyan University" },
+  "pavel-oleinikov": {
+    role: "Associate Director, Quantitative Analysis Center",
+    institution: "Wesleyan University",
+    photo: "/media/people/pavel-oleinikov.jpg", // supplied separately; not on the old site
+  },
   "silke-schwandt": { role: "Professor of Digital History", institution: "Bielefeld University" },
   // Marlboro College closed in 2020; not listed as a contact on Get involved
   "adam-franklin-lyons": { url: undefined, hideFromContact: true },
