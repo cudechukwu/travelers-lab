@@ -101,7 +101,7 @@ export async function ProjectPanel({ project: p }: { project: Project }) {
         // Hover previews the colour the project page opens in: dark grey for archived, red for active
         className={`sticky bottom-0 flex items-center justify-between gap-4 px-5 py-5 text-white transition-colors sm:px-8 ${
           p.status === "archived"
-            ? "bg-rubric hover:bg-[#666666]"
+            ? "bg-black hover:bg-[#666666]"
             : "bg-black hover:bg-rubric"
         }`}
       >
