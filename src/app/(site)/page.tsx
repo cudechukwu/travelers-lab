@@ -5,7 +5,7 @@ import { NetworkMap, hasSite } from "@/components/NetworkMap";
 import { SectionHead } from "@/components/blocks";
 import { ProjectPanel } from "@/components/ProjectPanel";
 import { ProjectPanels } from "@/components/ProjectPanels";
-import { ProjectList, ProjectTimeline, centuryRange } from "@/components/projects";
+import { ProjectList, ProjectTimeline } from "@/components/projects";
 import { getPeople, getProjects } from "@/lib/content";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
@@ -15,7 +15,6 @@ const NUMBER_WORDS = [
   "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
 ];
 const numberWord = (n: number) => NUMBER_WORDS[n] ?? String(n);
-const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export default async function HomePage() {
   const [projects, people] = await Promise.all([getProjects(), getPeople()]);
@@ -62,14 +61,7 @@ export default async function HomePage() {
       <section className="gutter py-20 lg:py-28">
         <SectionHead
           label="Research"
-          title={
-            <>
-              {capitalise(numberWord(projects.length))} projects spanning{" "}
-              <span className="block font-serif font-normal italic tracking-[-0.02em]">
-                {centuryRange(projects)}.
-              </span>
-            </>
-          }
+          title="Projects, by period"
           link={{ href: "/research", label: `All ${projects.length} projects` }}
         />
         <ProjectPanels panels={panels}>

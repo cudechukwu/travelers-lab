@@ -113,22 +113,6 @@ export function ProjectTimeline({ projects }: { projects: Project[] }) {
   );
 }
 
-const ORDINALS = [
-  "", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth",
-  "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth", "sixteenth", "seventeenth", "eighteenth",
-  "nineteenth", "twentieth",
-];
-
-/** "the third to eighteenth centuries", from the projects' timeline years */
-export const centuryRange = (projects: Project[]) => {
-  const starts = projects.map((p) => p.startYear).filter((y): y is number => y != null);
-  const ends = projects.map((p) => p.endYear).filter((y): y is number => y != null);
-  if (!starts.length) return "";
-  const century = (y: number) => Math.ceil(y / 100);
-  const word = (c: number) => ORDINALS[c] ?? `${c}th`;
-  return `the ${word(century(Math.min(...starts)))} to ${word(century(Math.max(...ends)))} centuries`;
-};
-
 /** The clickable list of projects that sits under the timeline. */
 export function ProjectList({ projects }: { projects: Project[] }) {
   return (
